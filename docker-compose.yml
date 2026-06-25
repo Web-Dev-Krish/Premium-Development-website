@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+      - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+    env_file:
+      - .env
+    networks:
+      - devsiy-net
+
+  # Optional: local Supabase stack for development/testing
+  supabase:
+    image: supabase/supabase-local:latest
+    ports:
+      - "54321:54321"   # Kong API gateway
+      - "54322:54322"   # Supabase Studio
+      - "54323:54323"   # PostgREST
+      - "54324:54324"   # Auth
+      - "54325:54325"   # Realtime
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      JWT_SECRET: ${JWT_SECRET:-your-super-secret-jwt-token}
+      ANON_KEY: ${ANON_KEY:-your-anon-key}
+      SERVICE_ROLE_KEY: ${SERVICE_ROLE_KEY:-your-service-role-key}
+    volumes:
+      - supabase-data:/var/lib/postgresql/data
+      - ./supabase/migrations:/docker-entrypoint-initdb.d
+    networks:
+      - devsiy-net
+
+volumes:
+  supabase-data:
+
+networks:
+  devsiy-net:
+    driver: bridge
