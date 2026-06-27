@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Plus, Pencil, Trash2, X } from 'lucide-react';
+import SafeImage from '../SafeImage';
 import { adminFetch, uploadFile } from '../../lib/utils';
 
 export default function ProjectsManager() {
@@ -90,7 +91,7 @@ export default function ProjectsManager() {
             <input placeholder="Project URL" value={form.project_url} onChange={(e) => setForm({ ...form, project_url: e.target.value })} className="bg-neutral-900 border border-white/10 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-white/30" />
             <div className="flex items-center gap-3">
               <input type="file" accept="image/*" onChange={handleFile} className="text-sm text-neutral-400" />
-              {form.image_url && <img src={form.image_url} alt="" className="w-10 h-10 object-cover rounded-lg border border-white/10" />}
+              {form.image_url && <SafeImage src={form.image_url} alt="" className="w-10 h-10 object-cover rounded-lg border border-white/10" />}
             </div>
           </div>
           <textarea placeholder="Description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} className="w-full bg-neutral-900 border border-white/10 rounded-lg px-4 py-2 text-white text-sm focus:outline-none focus:border-white/30 mb-4" />
@@ -109,7 +110,7 @@ export default function ProjectsManager() {
           {projects.map((project) => (
             <div key={project.id} className="rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden">
               <div className="aspect-video bg-neutral-900">
-                {project.image_url ? <img src={project.image_url} alt="" className="w-full h-full object-cover" /> : <div className="w-full h-full flex items-center justify-center text-neutral-600">No Image</div>}
+                <SafeImage src={project.image_url} alt="" className="w-full h-full object-cover" />
               </div>
               <div className="p-5">
                 <div className="flex items-start justify-between gap-2">
