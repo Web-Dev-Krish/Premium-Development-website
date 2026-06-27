@@ -75,11 +75,11 @@ export default function LeadForm({ settings }: { settings: Record<string, string
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             <div>
               <label className="block text-xs text-neutral-500 mb-2 tracking-wide">YOUR NAME</label>
-              <input required name="name" value={form.name} onChange={handleChange} className="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30" placeholder="John Doe" />
+              <input required name="name" value={form.name} onChange={handleChange} className="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30" placeholder="Devsiy" />
             </div>
             <div>
               <label className="block text-xs text-neutral-500 mb-2 tracking-wide">EMAIL</label>
-              <input required type="email" name="email" value={form.email} onChange={handleChange} className="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30" placeholder="john@company.com" />
+              <input required type="email" name="email" value={form.email} onChange={handleChange} className="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-white/30" placeholder="nitishsinghwebdev@gmail.com" />
             </div>
             <div>
               <label className="block text-xs text-neutral-500 mb-2 tracking-wide">MOBILE NUMBER</label>
