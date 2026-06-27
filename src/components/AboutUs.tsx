@@ -1,6 +1,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Award, Target, Users } from 'lucide-react';
+import SafeImage from './SafeImage';
 
 interface AboutUsProps {
   settings: Record<string, string>;
@@ -55,7 +56,7 @@ export default function AboutUs({ settings }: AboutUsProps) {
           >
             {settings?.banner_image_url ? (
               <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-white/10">
-                <img
+                <SafeImage
                   src={settings.banner_image_url}
                   alt="Devsiy banner"
                   className="w-full h-full object-cover"

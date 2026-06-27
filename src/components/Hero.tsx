@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Sparkles } from 'lucide-react';
+import SafeImage from './SafeImage';
 
 export default function Hero({ settings }: { settings: Record<string, string> }) {
   const hasImage = !!settings?.hero_image_url;
@@ -9,7 +10,7 @@ export default function Hero({ settings }: { settings: Record<string, string> })
       {hasImage ? (
         <>
           <div className="absolute inset-0">
-            <img
+            <SafeImage
               src={settings.hero_image_url}
               alt="Hero background"
               className="w-full h-full object-cover opacity-40"

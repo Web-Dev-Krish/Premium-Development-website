@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ExternalLink, Star } from 'lucide-react';
+import SafeImage from './SafeImage';
 
 export default function FeaturedWebsites() {
   const [items, setItems] = useState<any[]>([]);
@@ -47,11 +48,11 @@ export default function FeaturedWebsites() {
                   <Star className="w-3 h-3" /> Featured
                 </div>
                 <div className="aspect-[4/3] overflow-hidden">
-                  {item.image_url ? (
-                    <img src={item.image_url} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  ) : (
-                    <div className="w-full h-full bg-neutral-800 flex items-center justify-center text-neutral-600">No Image</div>
-                  )}
+                  <SafeImage
+                    src={item.image_url}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl text-white font-light mb-2">{item.title}</h3>

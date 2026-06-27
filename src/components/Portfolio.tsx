@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
+import SafeImage from './SafeImage';
 
 export default function Portfolio() {
   const [projects, setProjects] = useState<any[]>([]);
@@ -82,11 +83,11 @@ export default function Portfolio() {
                   className="group relative rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/30"
                 >
                   <div className="aspect-[4/3] overflow-hidden">
-                    {project.image_url ? (
-                      <img src={project.image_url} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                    ) : (
-                      <div className="w-full h-full bg-neutral-800 flex items-center justify-center text-neutral-600">No Image</div>
-                    )}
+                    <SafeImage
+                      src={project.image_url}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
                   </div>
                   <div className="p-6">
                     <p className="text-xs text-neutral-500 mb-2 tracking-wider">{project.categories?.name || 'Project'}</p>
