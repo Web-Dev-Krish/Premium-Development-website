@@ -9,6 +9,7 @@ import FAQ from '../components/FAQ';
 import LeadForm from '../components/LeadForm';
 import Footer from '../components/Footer';
 import AboutUs from '../components/AboutUs';
+import SuccessModal from '../components/SuccessModal';
 import SkinEffects from '../components/SkinEffects';
 
 export default function Home() {
@@ -55,6 +56,7 @@ export default function Home() {
       <Services />
       <LeadForm settings={settings} />
       <FAQ />
+      <SuccessModal/>
       <Footer settings={settings} />
     </div>
   );
