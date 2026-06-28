@@ -51,16 +51,19 @@ export default function Home() {
       <SkinEffects skins={skins} />
       <Navbar settings={settings} />
       <Hero settings={settings} />
+      <FeaturedWebsites />
       <Services />
       <WhyChooseUs />
-      <AboutUs settings={settings} />
-      <Portfolio />
-      <FeaturedWebsites />
-      <BuildYourProject />
-      <HostingPricing />
       <Founders />
       <FAQ />
       <LeadForm settings={settings} />
+      <AboutUs settings={settings} />
+      <Portfolio />
+      <BuildYourProject />
+      <HostingPricing />
+      
+      
+      
       <Footer settings={settings} />
     </div>
   );
