@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+import FeaturedWebsites from '../components/FeaturedWebsites';
 import Services from '../components/Services';
 import WhyChooseUs from '../components/WhyChooseUs';
-import AboutUs from '../components/AboutUs';
-import Portfolio from '../components/Portfolio';
-import FeaturedWebsites from '../components/FeaturedWebsites';
-import BuildYourProject from '../components/BuildYourProject';
-import HostingPricing from '../components/HostingPricing';
 import Founders from '../components/Founders';
 import FAQ from '../components/FAQ';
 import LeadForm from '../components/LeadForm';
 import Footer from '../components/Footer';
+import AboutUs from '../components/AboutUs';
+import Portfolio from '../components/Portfolio';
+import BuildYourProject from '../components/BuildYourProject';
+import HostingPricing from '../components/HostingPricing';
 import SkinEffects from '../components/SkinEffects';
 
 export default function Home() {
