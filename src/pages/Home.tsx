@@ -9,9 +9,6 @@ import FAQ from '../components/FAQ';
 import LeadForm from '../components/LeadForm';
 import Footer from '../components/Footer';
 import AboutUs from '../components/AboutUs';
-import Portfolio from '../components/Portfolio';
-import BuildYourProject from '../components/BuildYourProject';
-import HostingPricing from '../components/HostingPricing';
 import SkinEffects from '../components/SkinEffects';
 
 export default function Home() {
@@ -52,18 +49,12 @@ export default function Home() {
       <Navbar settings={settings} />
       <Hero settings={settings} />
       <FeaturedWebsites />
-      <Services />
-      <WhyChooseUs />
       <Founders />
-      <FAQ />
-      <LeadForm settings={settings} />
+      <WhyChooseUs />
       <AboutUs settings={settings} />
-      <Portfolio />
-      <BuildYourProject />
-      <HostingPricing />
-      
-      
-      
+      <Services />
+      <LeadForm settings={settings} />
+      <FAQ />
       <Footer settings={settings} />
     </div>
   );
