@@ -11,8 +11,7 @@ export default function Navbar({ settings }: { settings: Record<string, string> 
   const links = [
     { label: 'Services', href: '#services' },
     { label: 'About', href: '#about' },
-    { label: 'Work', href: '#portfolio' },
-    { label: 'Hosting', href: '#hosting' },
+    { label: 'Portfolio', href: '/Portfolio' },
     { label: 'Team', href: '#founders' },
     { label: 'FAQ', href: '#faq' },
     { label: 'Contact', href: '#contact' },
@@ -107,10 +106,10 @@ export default function Navbar({ settings }: { settings: Record<string, string> 
               </a>
             ))}
             <a
-              href={`tel:${settings?.mobile_number || '+91-98765-43210'}`}
+              href={`tel:${settings?.mobile_number || '+91- 77058 96801'}`}
               className="text-sm px-5 py-2 border border-white/20 rounded-full text-white hover:bg-white hover:text-neutral-950 transition-all"
             >
-              {settings?.mobile_number || '+91-98765-43210'}
+              {settings?.mobile_number || '+91- 77058 96801'}
             </a>
           </div>
 
@@ -148,11 +147,11 @@ export default function Navbar({ settings }: { settings: Record<string, string> 
               </a>
             ))}
             <a
-              href={`tel:${settings?.mobile_number || '+91-98765-43210'}`}
+              href={`tel:${settings?.mobile_number || '+91- 77058 96801'}`}
               onClick={handleLinkClick}
               className="mt-6 px-8 py-3 bg-white text-neutral-950 rounded-full text-sm font-medium"
             >
-              {settings?.mobile_number || '+91-98765-43210'}
+              {settings?.mobile_number || '+91- 77058 96801'}
             </a>
           </div>
         </div>
