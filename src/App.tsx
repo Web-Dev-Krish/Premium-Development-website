@@ -3,11 +3,11 @@ import { Suspense, lazy } from 'react';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
-import Portfolio from './pages/Portfolio';
 import './index.css';
 
 const Login = lazy(() => import('./pages/Login'));
 const Admin = lazy(() => import('./pages/Admin'));
+const Portfolio = lazy(() => import('./pages/Portfolio'));
 
 function App() {
   return (
@@ -15,7 +15,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/" element={<Portfolio />} />
+          <Route path="/portfolio" element={
+            <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-neutral-950"><div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" /></div>}>
+              <Portfolio />
+            </Suspense>
+          } />
           <Route path="/admin/login" element={
             <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-neutral-950"><div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" /></div>}>
               <Login />

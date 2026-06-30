@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar({ settings }: { settings: Record<string, string> }) {
@@ -11,7 +12,8 @@ export default function Navbar({ settings }: { settings: Record<string, string> 
   const links = [
     { label: 'Services', href: '#services' },
     { label: 'About', href: '#about' },
-    { label: 'Portfolio', href: '/Portfolio' },
+    { label: 'Work', href: '/portfolio' },
+    { label: 'Hosting', href: '#hosting' },
     { label: 'Team', href: '#founders' },
     { label: 'FAQ', href: '#faq' },
     { label: 'Contact', href: '#contact' },
@@ -97,19 +99,29 @@ export default function Navbar({ settings }: { settings: Record<string, string> 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
             {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm text-neutral-300 hover:text-white transition-colors tracking-wide"
-              >
-                {link.label}
-              </a>
+              link.href.startsWith('/') ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-sm text-neutral-300 hover:text-white transition-colors tracking-wide"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-neutral-300 hover:text-white transition-colors tracking-wide"
+                >
+                  {link.label}
+                </a>
+              )
             ))}
             <a
-              href={`tel:${settings?.mobile_number || '+91- 77058 96801'}`}
+              href={`tel:${settings?.mobile_number || '+91-98765-43210'}`}
               className="text-sm px-5 py-2 border border-white/20 rounded-full text-white hover:bg-white hover:text-neutral-950 transition-all"
             >
-              {settings?.mobile_number || '+91- 77058 96801'}
+              {settings?.mobile_number || '+91-98765-43210'}
             </a>
           </div>
 
@@ -137,21 +149,32 @@ export default function Navbar({ settings }: { settings: Record<string, string> 
         >
           <div className="flex flex-col items-center justify-center h-full gap-8 px-6 pt-[72px]">
             {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={handleLinkClick}
-                className="text-3xl font-light text-white hover:text-neutral-300 transition-colors"
-              >
-                {link.label}
-              </a>
+              link.href.startsWith('/') ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={handleLinkClick}
+                  className="text-3xl font-light text-white hover:text-neutral-300 transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={handleLinkClick}
+                  className="text-3xl font-light text-white hover:text-neutral-300 transition-colors"
+                >
+                  {link.label}
+                </a>
+              )
             ))}
             <a
-              href={`tel:${settings?.mobile_number || '+91- 77058 96801'}`}
+              href={`tel:${settings?.mobile_number || '+91-98765-43210'}`}
               onClick={handleLinkClick}
               className="mt-6 px-8 py-3 bg-white text-neutral-950 rounded-full text-sm font-medium"
             >
-              {settings?.mobile_number || '+91- 77058 96801'}
+              {settings?.mobile_number || '+91-98765-43210'}
             </a>
           </div>
         </div>
