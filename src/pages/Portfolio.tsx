@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 import AboutUs from '../components/AboutUs';
 import SkinEffects from '../components/SkinEffects';
 
-export default function Home() {
+export default function Portfolio() {
   const [settings, setSettings] = useState<Record<string, string>>({});
   const [skins, setSkins] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,7 @@ export default function Home() {
       setSettings(settingsData && typeof settingsData === 'object' ? settingsData : {});
       setSkins(Array.isArray(skinsData) ? skinsData : []);
     } catch (err) {
-      console.error('Home fetch error:', err);
+      console.error('Portfolio fetch error:', err);
     } finally {
       setLoading(false);
     }
