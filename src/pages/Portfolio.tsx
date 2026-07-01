@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
+import WhyChooseUs from '../components/WhyChooseUs';
 import PortfolioGrid from '../components/Portfolio';
+import Services from '../components/Services';
+import FAQ from '../components/FAQ';
+import LeadForm from '../components/LeadForm';
+import Footer from '../components/Footer';
 
 export default function PortfolioPage() {
   const [settings, setSettings] = useState<Record<string, string>>({});
@@ -35,9 +39,13 @@ export default function PortfolioPage() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 font-sans selection:bg-white/20">
-      <Navbar settings={settings} />
+      <Navbar settings={settings} variant="portfolio" />
       <div className="pt-[72px]">
+        <WhyChooseUs />
         <PortfolioGrid />
+        <Services />
+        <FAQ />
+        <LeadForm settings={settings} />
       </div>
       <Footer settings={settings} />
     </div>

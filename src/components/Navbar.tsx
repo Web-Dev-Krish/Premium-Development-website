@@ -1,23 +1,33 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Home as HomeIcon } from 'lucide-react';
 
-export default function Navbar({ settings }: { settings: Record<string, string> }) {
+interface NavbarProps {
+  settings: Record<string, string>;
+  variant?: 'home' | 'portfolio';
+}
+
+export default function Navbar({ settings, variant = 'home' }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const lastScrollY = useRef(0);
 
-  const links = [
+  const allLinks = [
     { label: 'Services', href: '#services' },
     { label: 'About', href: '#about' },
-    { label: 'Work', href: '/portfolio' },
-    { label: 'Hosting', href: '#hosting' },
+    { label: 'Portfolio', href: '/portfolio' },
     { label: 'Team', href: '#founders' },
     { label: 'FAQ', href: '#faq' },
     { label: 'Contact', href: '#contact' },
   ];
+
+  // On the Portfolio page, drop links to sections that don't exist there
+  // (Portfolio/Work itself, Team, and About).
+  const links = variant === 'portfolio'
+    ? allLinks.filter((l) => !['Portfolio', 'Team', 'About'].includes(l.label))
+    : allLinks;
 
   // Scroll state with throttling via requestAnimationFrame
   useEffect(() => {
@@ -117,6 +127,15 @@ export default function Navbar({ settings }: { settings: Record<string, string> 
                 </a>
               )
             ))}
+            {variant === 'portfolio' && (
+              <Link
+                to="/"
+                className="flex items-center gap-2 text-sm text-neutral-300 hover:text-white transition-colors tracking-wide"
+              >
+                <HomeIcon className="w-4 h-4" />
+                Back to Home
+              </Link>
+            )}
             <a
               href={`tel:${settings?.mobile_number || '+91-98765-43210'}`}
               className="text-sm px-5 py-2 border border-white/20 rounded-full text-white hover:bg-white hover:text-neutral-950 transition-all"
@@ -169,6 +188,16 @@ export default function Navbar({ settings }: { settings: Record<string, string> 
                 </a>
               )
             ))}
+            {variant === 'portfolio' && (
+              <Link
+                to="/"
+                onClick={handleLinkClick}
+                className="flex items-center gap-2 text-3xl font-light text-white hover:text-neutral-300 transition-colors"
+              >
+                <HomeIcon className="w-7 h-7" />
+                Home
+              </Link>
+            )}
             <a
               href={`tel:${settings?.mobile_number || '+91-98765-43210'}`}
               onClick={handleLinkClick}
