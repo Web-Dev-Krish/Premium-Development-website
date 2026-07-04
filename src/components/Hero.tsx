@@ -33,7 +33,7 @@ export default function Hero({ settings }: { settings: Record<string, string> })
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-xs tracking-widest text-neutral-300 mb-8"
         >
           <Sparkles className="w-3 h-3" />
-          {settings?.hero_tagline || 'PREMIUM WEB DESIGN AGENCY'}
+          {settings?.hero_tagline || 'WEBSITES BUILT TO GET YOU LEADS'}
         </motion.div>
 
         <motion.h1
@@ -42,9 +42,9 @@ export default function Hero({ settings }: { settings: Record<string, string> })
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-[1.1] tracking-tight mb-6"
         >
-          We craft digital
-          <span className="block text-neutral-500">experiences that </span>
-          <span className="italic font-serif">define luxury.</span>
+          We build websites
+          <span className="block text-neutral-500">that turn visitors into </span>
+          <span className="italic font-serif">customers.</span>
         </motion.h1>
 
         <motion.p
@@ -53,7 +53,7 @@ export default function Hero({ settings }: { settings: Record<string, string> })
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto mb-10 font-light"
         >
-          {settings?.hero_subtitle || 'Quality over quantity. Bespoke websites, e-commerce platforms, and digital products for brands that demand excellence.'}
+          {settings?.hero_subtitle || 'We design, build, and automate websites that generate real leads for your business — not just good looks.'}
         </motion.p>
 
         <motion.div
@@ -67,12 +67,6 @@ export default function Hero({ settings }: { settings: Record<string, string> })
             className="px-8 py-4 bg-white text-neutral-950 rounded-full text-sm font-medium tracking-wide hover:bg-neutral-200 transition-colors"
           >
             Start Your Project
-          </a>
-          <a
-            href="#portfolio"
-            className="px-8 py-4 border border-white/20 text-white rounded-full text-sm tracking-wide hover:bg-white/5 transition-colors"
-          >
-            View Our Work
           </a>
         </motion.div>
       </div>

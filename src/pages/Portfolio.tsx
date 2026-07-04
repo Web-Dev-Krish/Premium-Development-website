@@ -27,6 +27,7 @@ export default function PortfolioPage() {
     fetchData();
     // Scroll to top whenever this page mounts
     window.scrollTo(0, 0);
+    document.title = 'Our Work | Devsiy';
   }, []);
 
   if (loading) {

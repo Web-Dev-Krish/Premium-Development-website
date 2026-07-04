@@ -1,5 +1,6 @@
 import supabase from './db-client.js';
 import { verifyAdmin, setCors } from './admin-utils.js';
+import { sendLeadNotificationEmail } from './send-lead-email.js';
 
 const urgencyWeight = { High: 3, Medium: 2, Low: 1 };
 
@@ -29,6 +30,8 @@ export default async function handler(req, res) {
         name, email, mobile, project_name, description, budget_amount, currency, urgency, status: 'New'
       }).select().single();
       if (error) throw error;
+      // Fire-and-forget: don't block the lead response on email delivery.
+      sendLeadNotificationEmail(data);
       return res.status(201).json(data);
     }
     if (req.method === 'PUT') {

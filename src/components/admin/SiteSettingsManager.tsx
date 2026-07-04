@@ -4,14 +4,20 @@ import SafeImage from '../SafeImage';
 import { AlertCircle, CheckCircle2, Upload, ImageIcon } from 'lucide-react';
 
 const TEXT_FIELDS = [
-  { key: 'hero_tagline', label: 'Hero Tagline', placeholder: 'PREMIUM WEB DESIGN AGENCY' },
-  { key: 'hero_subtitle', label: 'Hero Subtitle', placeholder: 'Quality over quantity...' },
-  { key: 'about_paragraph_1', label: 'About Us Paragraph 1', placeholder: 'Devsiy is a premium digital agency...', multiline: true },
+  { key: 'hero_tagline', label: 'Hero Tagline', placeholder: 'WEBSITES BUILT TO GET YOU LEADS' },
+  { key: 'hero_subtitle', label: 'Hero Subtitle', placeholder: 'We design and build websites...' },
+  { key: 'about_paragraph_1', label: 'About Us Paragraph 1', placeholder: 'Devsiy builds websites focused on results...', multiline: true },
   { key: 'about_paragraph_2', label: 'About Us Paragraph 2', placeholder: 'Our philosophy is simple...', multiline: true },
   { key: 'mobile_number', label: 'Mobile Number', placeholder: '+91-9876543210' },
   { key: 'contact_email', label: 'Contact Email', placeholder: 'hello@devsiy.com' },
-  { key: 'footer_tagline', label: 'Footer Tagline', placeholder: 'Premium website design...' },
+  { key: 'footer_tagline', label: 'Footer Tagline', placeholder: 'Websites and automation that help businesses generate more leads.' },
   { key: 'appointment_url', label: 'Appointment URL', placeholder: 'https://calendar.google.com/...' },
+  {
+    key: 'notification_emails',
+    label: 'Lead Notification Emails (comma-separated)',
+    placeholder: 'you@example.com, cofounder@example.com',
+    help: 'Every email address listed here gets an email the moment a new lead comes in. Add your co-founder\'s email here too — you can list as many people as you want.',
+  },
 ];
 
 const IMAGE_FIELDS = [
@@ -97,6 +103,7 @@ export default function SiteSettingsManager() {
         {TEXT_FIELDS.map((field) => (
           <div key={field.key} className="p-6 rounded-2xl border border-white/10 bg-white/[0.02]">
             <label className="block text-xs text-neutral-500 mb-2 tracking-wide">{field.label}</label>
+            {field.help && <p className="text-neutral-600 text-xs mb-2">{field.help}</p>}
             {field.multiline ? (
               <textarea
                 value={settings[field.key] || ''}

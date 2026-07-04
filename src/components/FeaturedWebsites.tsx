@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
-import { ExternalLink, Star } from 'lucide-react';
+import { ExternalLink, Star, ArrowRight } from 'lucide-react';
 import SafeImage from './SafeImage';
 
 export default function FeaturedWebsites() {
@@ -67,6 +68,20 @@ export default function FeaturedWebsites() {
             ))}
           </div>
         )}
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex justify-center mt-12"
+        >
+          <Link
+            to="/portfolio"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-white/20 text-white rounded-full text-sm tracking-wide hover:bg-white/5 transition-colors"
+          >
+            View Our Work <ArrowRight className="w-4 h-4" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

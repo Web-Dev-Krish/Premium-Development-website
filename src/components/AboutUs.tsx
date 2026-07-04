@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { Award, Target, Users } from 'lucide-react';
 import SafeImage from './SafeImage';
 
@@ -12,8 +13,8 @@ export default function AboutUs({ settings }: AboutUsProps) {
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
   const highlights = [
-    { icon: Target, title: 'Purpose-Driven', desc: 'Every line of code and every pixel serves your business goal.' },
-    { icon: Award, title: 'Award-Winning Quality', desc: 'We treat each project like a portfolio piece, not a ticket.' },
+    { icon: Target, title: 'Results-Driven', desc: 'Every page is built with one goal: turning visitors into leads and customers.' },
+    { icon: Award, title: 'Built to Convert', desc: 'We combine design, speed, and automation so your website does the selling for you.' },
     { icon: Users, title: 'Client-First Process', desc: 'Transparent communication, milestone-based delivery, and zero surprises.' },
   ];
 
@@ -28,24 +29,24 @@ export default function AboutUs({ settings }: AboutUsProps) {
           >
             <p className="text-xs tracking-[0.2em] text-neutral-500 mb-4">ABOUT DEVSIY</p>
             <h2 className="text-3xl md:text-5xl font-light text-white mb-6">
-              We believe in <span className="italic font-serif">less but better.</span>
+              We build websites that <span className="italic font-serif">deliver results.</span>
             </h2>
             <div className="space-y-4 text-neutral-400 leading-relaxed mb-8">
               <p>
                 {settings?.about_paragraph_1 ||
-                  'Devsiy is a premium digital agency focused on designing and developing websites that elevate brands. From high-converting e-commerce stores to bespoke corporate platforms, we build with intention.'}
+                  'Devsiy designs and builds websites focused on one thing: helping businesses generate more leads. From high-converting landing pages to full lead-generation and automation systems, we build with your growth in mind.'}
               </p>
               <p>
                 {settings?.about_paragraph_2 ||
-                  'Our philosophy is simple: quality over quantity. We partner with a select number of clients each quarter so every project receives the creative and technical excellence it deserves.'}
+                  'We pair thoughtful design with automation — lead capture, instant notifications, and follow-up systems — so no opportunity slips through the cracks. We partner with a select number of clients at a time so every project gets the attention it needs.'}
               </p>
             </div>
-            <a
-              href="#portfolio"
+            <Link
+              to="/portfolio"
               className="inline-flex items-center px-6 py-3 border border-white/20 rounded-full text-sm text-white hover:bg-white hover:text-neutral-950 transition-all"
             >
               See Our Work
-            </a>
+            </Link>
           </motion.div>
 
           <motion.div

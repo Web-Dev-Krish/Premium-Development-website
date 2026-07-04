@@ -35,6 +35,10 @@ export default function Home() {
 
   useEffect(() => { fetchData(); }, []);
 
+  useEffect(() => {
+    document.title = 'Devsiy | Websites & Lead Generation Systems for Businesses';
+  }, []);
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-neutral-950">

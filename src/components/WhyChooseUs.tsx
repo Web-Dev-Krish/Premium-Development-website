@@ -6,7 +6,7 @@ const reasons = [
   { icon: Gem, title: 'Quality Over Quantity', desc: 'We take on limited projects to ensure every detail receives the attention it deserves.' },
   { icon: Shield, title: 'Built to Last', desc: 'Clean code, robust architecture, and scalable solutions that grow with your business.' },
   { icon: Clock, title: 'On-Time Delivery', desc: 'Transparent timelines and disciplined execution. Your deadlines are non-negotiable.' },
-  { icon: Headphones, title: 'White-Glove Support', desc: 'Direct access to our team from concept to launch and beyond.' },
+  { icon: Headphones, title: 'Direct Support', desc: 'Direct access to our team from concept to launch and beyond.' },
 ];
 
 export default function WhyChooseUs() {
@@ -28,8 +28,8 @@ export default function WhyChooseUs() {
               <span className="italic font-serif">We build trust.</span>
             </h2>
             <p className="text-neutral-400 leading-relaxed mb-8">
-              In a world of quick fixes and cookie-cutter templates, Devsiy stands for craftsmanship.
-              Our approach is deliberate, our standards are high, and our commitment to your success is absolute.
+              In a world of slow sites and templates that don't convert, Devsiy focuses on one thing:
+              turning your website into a lead-generating asset for your business.
             </p>
             <a href="#contact" className="inline-flex items-center px-6 py-3 border border-white/20 rounded-full text-sm text-white hover:bg-white hover:text-neutral-950 transition-all">
               Discuss Your Project

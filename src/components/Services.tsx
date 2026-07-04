@@ -4,10 +4,10 @@ import { useRef } from 'react';
 import { Palette, ShoppingBag, Code2, Search, Settings, Smartphone } from 'lucide-react';
 
 const services = [
-  { icon: Palette, title: 'Website Design', desc: 'Bespoke, visually stunning websites that communicate your brand\'s essence with precision.' },
+  { icon: Palette, title: 'Website Design', desc: 'Websites designed around one goal: converting visitors into leads for your business.' },
   { icon: ShoppingBag, title: 'E-commerce Development', desc: 'High-converting online stores on Shopify, WooCommerce, and custom platforms.' },
-  { icon: Code2, title: 'Custom Web Apps', desc: 'Scalable applications built with modern stacks tailored to your business logic.' },
-  { icon: Smartphone, title: 'UI/UX Design', desc: 'User-centered interfaces that feel intuitive, elegant, and effortless.' },
+  { icon: Code2, title: 'Lead Generation & Automation', desc: 'Forms, follow-ups, and notifications that capture and route every lead automatically.' },
+  { icon: Smartphone, title: 'UI/UX Design', desc: 'Interfaces designed to guide visitors toward taking action, not just look good.' },
   { icon: Search, title: 'SEO & Performance', desc: 'Technical optimization that puts your business in front of the right audience.' },
   { icon: Settings, title: 'Maintenance & Support', desc: 'Ongoing care, updates, and hosting management so you stay focused on growth.' },
 ];

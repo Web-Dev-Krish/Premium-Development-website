@@ -9,7 +9,7 @@ export default function Footer({ settings }: { settings: Record<string, string> 
           <div>
             <h3 className="text-2xl font-light tracking-[0.2em] text-white mb-4">DEVSIY</h3>
             <p className="text-neutral-400 text-sm leading-relaxed max-w-xs">
-              {settings?.footer_tagline || 'Premium website design and development agency. Quality over quantity, always.'}
+              {settings?.footer_tagline || 'We design and build websites, lead-generation systems, and automation that help businesses win more customers.'}
             </p>
           </div>
           <div>

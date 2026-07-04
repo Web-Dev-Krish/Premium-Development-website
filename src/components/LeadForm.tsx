@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Phone, Calendar } from 'lucide-react';
+import { Send } from 'lucide-react';
 import SuccessModal from './SuccessModal';
 
 export default function LeadForm({ settings }: { settings: Record<string, string> }) {
@@ -41,7 +41,6 @@ export default function LeadForm({ settings }: { settings: Record<string, string
   };
 
   const mobileNumber = settings?.mobile_number || '+91-9876543210';
-  const appointmentUrl = settings?.appointment_url || 'https://calendar.google.com';
 
   return (
     <section id="contact" className="py-24 md:py-32">
@@ -130,7 +129,6 @@ export default function LeadForm({ settings }: { settings: Record<string, string
       {submitted && (
         <SuccessModal
           mobileNumber={mobileNumber}
-          appointmentUrl={appointmentUrl}
           onClose={() => setSubmitted(false)}
         />
       )}

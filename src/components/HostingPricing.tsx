@@ -26,7 +26,7 @@ export default function HostingPricing() {
         >
           <p className="text-xs tracking-[0.2em] text-neutral-500 mb-4">HOSTING</p>
           <h2 className="text-3xl md:text-5xl font-light text-white mb-4">Reliable hosting, <span className="italic font-serif">effortless.</span></h2>
-          <p className="text-neutral-400 max-w-xl mx-auto">Premium hosting solutions designed for speed, security, and peace of mind.</p>
+          <p className="text-neutral-400 max-w-xl mx-auto">Reliable hosting built for speed, security, and peace of mind.</p>
         </motion.div>
 
         {loading ? (
