@@ -24,15 +24,16 @@ INSERT INTO public.hosting_plans (name, price, duration, features, is_popular, d
 
 -- Site settings
 INSERT INTO public.site_settings (key, value) VALUES
-('hero_tagline', 'PREMIUM WEB DESIGN AGENCY'),
-('hero_subtitle', 'Quality over quantity. Bespoke websites, e-commerce platforms, and digital products for brands that demand excellence.'),
-('about_paragraph_1', 'Devsiy is a premium digital agency focused on designing and developing websites that elevate brands. From high-converting e-commerce stores to bespoke corporate platforms, we build with intention.'),
-('about_paragraph_2', 'Our philosophy is simple: quality over quantity. We partner with a select number of clients each quarter so every project receives the creative and technical excellence it deserves.'),
+('hero_tagline', 'WEBSITES BUILT TO GET YOU LEADS'),
+('hero_subtitle', 'We design, build, and automate websites that generate real leads for your business — not just good looks.'),
+('about_paragraph_1', 'Devsiy designs and builds websites focused on one thing: helping businesses generate more leads. From high-converting landing pages to full lead-generation and automation systems, we build with your growth in mind.'),
+('about_paragraph_2', 'We pair thoughtful design with automation — lead capture, instant notifications, and follow-up systems — so no opportunity slips through the cracks. We partner with a select number of clients at a time so every project gets the attention it needs.'),
 ('hero_image_url', ''),
 ('banner_image_url', ''),
 ('mobile_number', '+91-98765-43210'),
 ('contact_email', 'hello@devsiy.com'),
-('footer_tagline', 'Premium website design and development agency. Quality over quantity, always.'),
+('notification_emails', 'hello@devsiy.com'),
+('footer_tagline', 'We design and build websites, lead-generation systems, and automation that help businesses win more customers.'),
 ('appointment_url', 'https://calendar.google.com/calendar/u/0/appointments')
 ON CONFLICT (key) DO NOTHING;
 
@@ -46,5 +47,5 @@ INSERT INTO public.faqs (question, answer, display_order, is_active) VALUES
 
 -- Founders
 INSERT INTO public.founders (role, name, title, bio, image_url, display_order) VALUES
-('founder', 'Aryan Sharma', 'Creative Director & CEO', 'With over a decade of experience in digital design, Aryan leads Devsiy with a vision for quality-driven, luxury web experiences.', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face', 1),
+('founder', 'Aryan Sharma', 'Creative Director & CEO', 'With over a decade of experience in digital design, Aryan leads Devsiy with a focus on building websites that drive real, measurable results for clients.', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face', 1),
 ('co-founder', 'Priya Mehta', 'Head of Strategy & Operations', 'Priya ensures every project runs seamlessly, blending business strategy with world-class execution for our clients.', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=face', 2);
