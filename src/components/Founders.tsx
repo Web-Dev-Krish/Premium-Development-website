@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import Skeleton from './Skeleton';
 
 export default function Founders() {
   const [founders, setFounders] = useState<any[]>([]);
@@ -28,8 +29,19 @@ export default function Founders() {
         </motion.div>
 
         {loading ? (
-          <div className="flex justify-center">
-            <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+          <div className="grid md:grid-cols-2 gap-8">
+            {Array.from({ length: 2 }).map((_, i) => (
+              <div key={i} className="flex flex-col md:flex-row gap-6 items-center p-6 rounded-2xl border border-white/10 bg-white/[0.02]">
+                <Skeleton className="w-32 h-32 rounded-full shrink-0" />
+                <div className="w-full space-y-3 text-center md:text-left">
+                  <Skeleton className="h-3 w-24 mx-auto md:mx-0" />
+                  <Skeleton className="h-5 w-40 mx-auto md:mx-0" />
+                  <Skeleton className="h-3 w-32 mx-auto md:mx-0" />
+                  <Skeleton className="h-3 w-full" />
+                  <Skeleton className="h-3 w-4/5 mx-auto md:mx-0" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <div className="grid md:grid-cols-2 gap-8">

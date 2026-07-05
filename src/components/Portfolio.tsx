@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 import SafeImage from './SafeImage';
+import Skeleton from './Skeleton';
 
 export default function Portfolio() {
   const [projects, setProjects] = useState<any[]>([]);
@@ -66,8 +67,17 @@ export default function Portfolio() {
         </div>
 
         {loading ? (
-          <div className="flex justify-center py-20">
-            <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/30">
+                <Skeleton className="aspect-[4/3] w-full rounded-none" />
+                <div className="p-6 space-y-3">
+                  <Skeleton className="h-3 w-20" />
+                  <Skeleton className="h-5 w-2/3" />
+                  <Skeleton className="h-3 w-full" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

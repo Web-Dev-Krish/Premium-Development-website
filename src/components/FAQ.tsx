@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
+import Skeleton from './Skeleton';
 
 export default function FAQ() {
   const [faqs, setFaqs] = useState<any[]>([]);
@@ -30,8 +31,12 @@ export default function FAQ() {
         </motion.div>
 
         {loading ? (
-          <div className="flex justify-center">
-            <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+          <div className="space-y-4">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <div key={i} className="border border-white/10 rounded-xl p-6 bg-white/[0.02]">
+                <Skeleton className="h-4 w-2/3" />
+              </div>
+            ))}
           </div>
         ) : (
           <div className="space-y-4">

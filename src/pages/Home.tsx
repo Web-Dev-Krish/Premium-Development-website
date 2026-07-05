@@ -5,11 +5,13 @@ import FeaturedWebsites from '../components/FeaturedWebsites';
 import Services from '../components/Services';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Founders from '../components/Founders';
+import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
-import LeadForm from '../components/LeadForm';
+import BuildYourProject from '../components/BuildYourProject';
 import Footer from '../components/Footer';
 import AboutUs from '../components/AboutUs';
 import SkinEffects from '../components/SkinEffects';
+import PageSkeleton from '../components/PageSkeleton';
 
 export default function Home() {
   const [settings, setSettings] = useState<Record<string, string>>({});
@@ -40,11 +42,7 @@ export default function Home() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-neutral-950">
-        <div className="w-10 h-10 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-      </div>
-    );
+    return <PageSkeleton />;
   }
 
   return (
@@ -57,8 +55,9 @@ export default function Home() {
       <WhyChooseUs />
       <AboutUs settings={settings} />
       <Services />
-      <LeadForm settings={settings} />
+      <Testimonials />
       <FAQ />
+      <BuildYourProject />
       <Footer settings={settings} />
     </div>
   );

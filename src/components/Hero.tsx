@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowDown, Sparkles } from 'lucide-react';
 import SafeImage from './SafeImage';
 
@@ -62,12 +63,12 @@ export default function Hero({ settings }: { settings: Record<string, string> })
           transition={{ duration: 0.8, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="px-8 py-4 bg-white text-neutral-950 rounded-full text-sm font-medium tracking-wide hover:bg-neutral-200 transition-colors"
           >
             Start Your Project
-          </a>
+          </Link>
         </motion.div>
       </div>
 

@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { Gem, Shield, Clock, Headphones } from 'lucide-react';
 
 const reasons = [
@@ -31,9 +32,9 @@ export default function WhyChooseUs() {
               In a world of slow sites and templates that don't convert, Devsiy focuses on one thing:
               turning your website into a lead-generating asset for your business.
             </p>
-            <a href="#contact" className="inline-flex items-center px-6 py-3 border border-white/20 rounded-full text-sm text-white hover:bg-white hover:text-neutral-950 transition-all">
+            <Link to="/contact" className="inline-flex items-center px-6 py-3 border border-white/20 rounded-full text-sm text-white hover:bg-white hover:text-neutral-950 transition-all">
               Discuss Your Project
-            </a>
+            </Link>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 gap-6">

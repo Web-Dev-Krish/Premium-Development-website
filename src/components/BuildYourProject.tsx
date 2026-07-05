@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles } from 'lucide-react';
 
 export default function BuildYourProject() {
@@ -23,15 +24,16 @@ export default function BuildYourProject() {
             <p className="text-neutral-400 max-w-xl mx-auto mb-8">
               Share your vision with us and get a tailored proposal within 24 hours. No obligations, just clarity.
             </p>
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-neutral-950 rounded-full text-sm font-medium tracking-wide hover:bg-neutral-200 transition-colors"
             >
               Build Your Project <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>
     </section>
   );
 }
+

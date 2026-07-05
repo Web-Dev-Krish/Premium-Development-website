@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { Check, Crown } from 'lucide-react';
+import Skeleton from './Skeleton';
 
 export default function HostingPricing() {
   const [plans, setPlans] = useState<any[]>([]);
@@ -30,8 +32,19 @@ export default function HostingPricing() {
         </motion.div>
 
         {loading ? (
-          <div className="flex justify-center">
-            <div className="w-8 h-8 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+          <div className="grid md:grid-cols-3 gap-6">
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div key={i} className="rounded-2xl border border-white/10 p-8 space-y-4">
+                <Skeleton className="h-4 w-24" />
+                <Skeleton className="h-8 w-32" />
+                <div className="space-y-3 pt-4">
+                  <Skeleton className="h-3 w-full" />
+                  <Skeleton className="h-3 w-4/5" />
+                  <Skeleton className="h-3 w-3/4" />
+                </div>
+                <Skeleton className="h-11 w-full rounded-xl mt-6" />
+              </div>
+            ))}
           </div>
         ) : (
           <div className="grid md:grid-cols-3 gap-6">
@@ -61,12 +74,12 @@ export default function HostingPricing() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href="#contact"
+                <Link
+                  to="/contact"
                   className={`block text-center py-3 rounded-xl text-sm transition-colors ${plan.is_popular ? 'bg-white text-neutral-950 hover:bg-neutral-200' : 'border border-white/20 text-white hover:bg-white/5'}`}
                 >
                   Get Started
-                </a>
+                </Link>
               </motion.div>
             ))}
           </div>

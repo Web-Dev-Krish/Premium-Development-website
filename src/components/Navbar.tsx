@@ -4,7 +4,7 @@ import { Menu, X, Home as HomeIcon } from 'lucide-react';
 
 interface NavbarProps {
   settings: Record<string, string>;
-  variant?: 'home' | 'portfolio';
+  variant?: 'home' | 'portfolio' | 'contact';
 }
 
 export default function Navbar({ settings, variant = 'home' }: NavbarProps) {
@@ -20,14 +20,18 @@ export default function Navbar({ settings, variant = 'home' }: NavbarProps) {
     { label: 'Portfolio', href: '/portfolio' },
     { label: 'Team', href: '#founders' },
     { label: 'FAQ', href: '#faq' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Contact', href: '/contact' },
   ];
 
   // On the Portfolio page, drop links to sections that don't exist there
   // (Portfolio/Work itself, Team, and About).
+  // On the standalone Contact page, drop links to sections that live on the
+  // homepage only (Services, About, Team, FAQ) since none of them exist here.
   const links = variant === 'portfolio'
     ? allLinks.filter((l) => !['Portfolio', 'Team', 'About'].includes(l.label))
-    : allLinks;
+    : variant === 'contact'
+      ? allLinks.filter((l) => !['Services', 'About', 'Team', 'FAQ'].includes(l.label))
+      : allLinks;
 
   // Scroll state with throttling via requestAnimationFrame
   useEffect(() => {
@@ -127,7 +131,7 @@ export default function Navbar({ settings, variant = 'home' }: NavbarProps) {
                 </a>
               )
             ))}
-            {variant === 'portfolio' && (
+            {(variant === 'portfolio' || variant === 'contact') && (
               <Link
                 to="/"
                 className="flex items-center gap-2 text-sm text-neutral-300 hover:text-white transition-colors tracking-wide"
@@ -188,7 +192,7 @@ export default function Navbar({ settings, variant = 'home' }: NavbarProps) {
                 </a>
               )
             ))}
-            {variant === 'portfolio' && (
+            {(variant === 'portfolio' || variant === 'contact') && (
               <Link
                 to="/"
                 onClick={handleLinkClick}

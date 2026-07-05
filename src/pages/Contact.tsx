@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import WhyChooseUs from '../components/WhyChooseUs';
-import PortfolioGrid from '../components/Portfolio';
-import Services from '../components/Services';
-import Testimonials from '../components/Testimonials';
-import FAQ from '../components/FAQ';
-import BuildYourProject from '../components/BuildYourProject';
+import LeadForm from '../components/LeadForm';
 import Footer from '../components/Footer';
 import PageSkeleton from '../components/PageSkeleton';
 
-export default function PortfolioPage() {
+export default function Contact() {
   const [settings, setSettings] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
 
@@ -19,7 +14,7 @@ export default function PortfolioPage() {
       const settingsData = await settingsRes.json();
       setSettings(settingsData && typeof settingsData === 'object' ? settingsData : {});
     } catch (err) {
-      console.error('Portfolio page fetch error:', err);
+      console.error('Contact page fetch error:', err);
     } finally {
       setLoading(false);
     }
@@ -27,9 +22,8 @@ export default function PortfolioPage() {
 
   useEffect(() => {
     fetchData();
-    // Scroll to top whenever this page mounts
     window.scrollTo(0, 0);
-    document.title = 'Our Work | Devsiy';
+    document.title = 'Start Your Project | Devsiy';
   }, []);
 
   if (loading) {
@@ -38,14 +32,9 @@ export default function PortfolioPage() {
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 font-sans selection:bg-white/20">
-      <Navbar settings={settings} variant="portfolio" />
+      <Navbar settings={settings} variant="contact" />
       <div className="pt-[72px]">
-        <WhyChooseUs />
-        <PortfolioGrid />
-        <Services />
-        <Testimonials />
-        <FAQ />
-        <BuildYourProject />
+        <LeadForm settings={settings} />
       </div>
       <Footer settings={settings} />
     </div>
