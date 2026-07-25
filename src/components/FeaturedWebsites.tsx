@@ -1,13 +1,15 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
-import { ExternalLink, Star, ArrowRight } from 'lucide-react';
+import { ExternalLink, Star, ArrowRight, Eye } from 'lucide-react';
 import SafeImage from './SafeImage';
 import Skeleton from './Skeleton';
+import WebsitePreviewModal from './WebsitePreviewModal';
 
 export default function FeaturedWebsites() {
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [previewModal, setPreviewModal] = useState<{ isOpen: boolean; url: string; title: string }>({ isOpen: false, url: '', title: '' });
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
@@ -68,11 +70,21 @@ export default function FeaturedWebsites() {
                 <div className="p-6">
                   <h3 className="text-xl text-white font-light mb-2">{item.title}</h3>
                   <p className="text-neutral-400 text-sm line-clamp-2 mb-4">{item.description}</p>
-                  {item.project_url && (
-                    <a href={item.project_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-white hover:text-neutral-300 transition-colors">
-                      View Project <ExternalLink className="w-3 h-3" />
-                    </a>
-                  )}
+                  <div className="flex gap-3">
+                    {item.project_url && (
+                      <>
+                        <button
+                          onClick={() => setPreviewModal({ isOpen: true, url: item.project_url, title: item.title })}
+                          className="inline-flex items-center gap-2 text-sm text-white hover:text-neutral-300 transition-colors"
+                        >
+                          Preview <Eye className="w-3 h-3" />
+                        </button>
+                        <a href={item.project_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-white hover:text-neutral-300 transition-colors">
+                          View Project <ExternalLink className="w-3 h-3" />
+                        </a>
+                      </>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -93,6 +105,12 @@ export default function FeaturedWebsites() {
           </Link>
         </motion.div>
       </div>
+      <WebsitePreviewModal
+        isOpen={previewModal.isOpen}
+        onClose={() => setPreviewModal({ isOpen: false, url: '', title: '' })}
+        url={previewModal.url}
+        title={previewModal.title}
+      />
     </section>
   );
 }

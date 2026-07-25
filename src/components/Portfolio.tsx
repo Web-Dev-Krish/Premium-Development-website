@@ -1,14 +1,16 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Eye } from 'lucide-react';
 import SafeImage from './SafeImage';
 import Skeleton from './Skeleton';
+import WebsitePreviewModal from './WebsitePreviewModal';
 
 export default function Portfolio() {
   const [projects, setProjects] = useState<any[]>([]);
   const [categories, setCategories] = useState<any[]>([]);
   const [activeCategory, setActiveCategory] = useState('all');
   const [loading, setLoading] = useState(true);
+  const [previewModal, setPreviewModal] = useState<{ isOpen: boolean; url: string; title: string }>({ isOpen: false, url: '', title: '' });
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
@@ -103,11 +105,21 @@ export default function Portfolio() {
                     <p className="text-xs text-neutral-500 mb-2 tracking-wider">{project.categories?.name || 'Project'}</p>
                     <h3 className="text-xl text-white font-light mb-2">{project.title}</h3>
                     <p className="text-neutral-400 text-sm line-clamp-2 mb-4">{project.description}</p>
-                    {project.project_url && (
-                      <a href={project.project_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-white hover:text-neutral-300 transition-colors">
-                        Visit Live <ExternalLink className="w-3 h-3" />
-                      </a>
-                    )}
+                    <div className="flex gap-3">
+                      {project.project_url && (
+                        <>
+                          <button
+                            onClick={() => setPreviewModal({ isOpen: true, url: project.project_url, title: project.title })}
+                            className="inline-flex items-center gap-2 text-sm text-white hover:text-neutral-300 transition-colors"
+                          >
+                            Preview <Eye className="w-3 h-3" />
+                          </button>
+                          <a href={project.project_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-white hover:text-neutral-300 transition-colors">
+                            Visit Live <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </>
+                      )}
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -115,6 +127,12 @@ export default function Portfolio() {
           </motion.div>
         )}
       </div>
+      <WebsitePreviewModal
+        isOpen={previewModal.isOpen}
+        onClose={() => setPreviewModal({ isOpen: false, url: '', title: '' })}
+        url={previewModal.url}
+        title={previewModal.title}
+      />
     </section>
   );
 }
