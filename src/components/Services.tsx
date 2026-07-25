@@ -1,16 +1,18 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Palette, ShoppingBag, Code2, Search, Settings, Smartphone } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Palette, ShoppingBag, Code2, Search, Settings, Smartphone, ArrowRight } from 'lucide-react';
+import { services, ServiceData } from '../data/services';
 
-const services = [
-  { icon: Palette, title: 'Website Design', desc: 'Websites designed around one goal: converting visitors into leads for your business.' },
-  { icon: ShoppingBag, title: 'E-commerce Development', desc: 'High-converting online stores on Shopify, WooCommerce, and custom platforms.' },
-  { icon: Code2, title: 'Lead Generation & Automation', desc: 'Forms, follow-ups, and notifications that capture and route every lead automatically.' },
-  { icon: Smartphone, title: 'UI/UX Design', desc: 'Interfaces designed to guide visitors toward taking action, not just look good.' },
-  { icon: Search, title: 'SEO & Performance', desc: 'Technical optimization that puts your business in front of the right audience.' },
-  { icon: Settings, title: 'Maintenance & Support', desc: 'Ongoing care, updates, and hosting management so you stay focused on growth.' },
-];
+const iconMap: Record<ServiceData['icon'], typeof Palette> = {
+  palette: Palette,
+  'shopping-bag': ShoppingBag,
+  code: Code2,
+  smartphone: Smartphone,
+  search: Search,
+  settings: Settings,
+};
 
 export default function Services() {
   const ref = useRef(null);
@@ -31,19 +33,29 @@ export default function Services() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] transition-colors"
-            >
-              <service.icon className="w-8 h-8 text-neutral-300 mb-6 group-hover:text-white transition-colors" />
-              <h3 className="text-xl text-white mb-3 font-light">{service.title}</h3>
-              <p className="text-neutral-400 text-sm leading-relaxed">{service.desc}</p>
-            </motion.div>
-          ))}
+          {services.map((service, index) => {
+            const Icon = iconMap[service.icon];
+            return (
+              <motion.div
+                key={service.slug}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Link
+                  to={`/services/${service.slug}`}
+                  className="group block h-full p-8 rounded-2xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/20 transition-all"
+                >
+                  <Icon className="w-8 h-8 text-neutral-300 mb-6 group-hover:text-white transition-colors" />
+                  <h3 className="text-xl text-white mb-3 font-light">{service.title}</h3>
+                  <p className="text-neutral-400 text-sm leading-relaxed mb-4">{service.desc}</p>
+                  <span className="inline-flex items-center gap-1.5 text-xs text-neutral-300 group-hover:text-white transition-colors">
+                    Learn more <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

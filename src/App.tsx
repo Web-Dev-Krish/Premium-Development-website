@@ -11,6 +11,7 @@ const Admin = lazy(() => import('./pages/Admin'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
 const RecentWork = lazy(() => import('./pages/RecentWork'));
 const Contact = lazy(() => import('./pages/Contact'));
+const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
 
 function App() {
   return (
@@ -31,6 +32,11 @@ function App() {
           <Route path="/contact" element={
             <Suspense fallback={<PageSkeleton />}>
               <Contact />
+            </Suspense>
+          } />
+          <Route path="/services/:slug" element={
+            <Suspense fallback={<PageSkeleton />}>
+              <ServiceDetail />
             </Suspense>
           } />
           <Route path="/admin/login" element={

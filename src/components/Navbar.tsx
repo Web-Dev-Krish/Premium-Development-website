@@ -1,38 +1,28 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Home as HomeIcon } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   settings: Record<string, string>;
+  // Kept for backward compatibility with existing pages that still pass a
+  // variant prop; the navbar now shows the same global links everywhere.
   variant?: 'home' | 'portfolio' | 'contact';
 }
 
-export default function Navbar({ settings, variant = 'home' }: NavbarProps) {
+export default function Navbar({ settings }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const lastScrollY = useRef(0);
 
-  const allLinks = [
-    { label: 'Services', href: '#services' },
-    { label: 'About', href: '#about' },
+  // Global navigation — identical on every page of the site.
+  const links = [
+    { label: 'Home', href: '/' },
     { label: 'Portfolio', href: '/portfolio' },
     { label: 'Recent Work', href: '/recent-work' },
-    { label: 'Team', href: '#founders' },
-    { label: 'FAQ', href: '#faq' },
     { label: 'Contact', href: '/contact' },
   ];
-
-  // On the Portfolio page, drop links to sections that don't exist there
-  // (Portfolio/Work itself, Team, and About).
-  // On the standalone Contact page, drop links to sections that live on the
-  // homepage only (Services, About, Team, FAQ) since none of them exist here.
-  const links = variant === 'portfolio'
-    ? allLinks.filter((l) => !['Portfolio', 'Team', 'About'].includes(l.label))
-    : variant === 'contact'
-      ? allLinks.filter((l) => !['Services', 'About', 'Team', 'FAQ'].includes(l.label))
-      : allLinks;
 
   // Scroll state with throttling via requestAnimationFrame
   useEffect(() => {
@@ -107,9 +97,9 @@ export default function Navbar({ settings, variant = 'home' }: NavbarProps) {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
-          <a href="#" className="text-2xl font-light tracking-[0.2em] text-white">
+          <Link to="/" className="text-2xl font-light tracking-[0.2em] text-white">
             DEVSIY
-          </a>
+          </Link>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
@@ -132,15 +122,6 @@ export default function Navbar({ settings, variant = 'home' }: NavbarProps) {
                 </a>
               )
             ))}
-            {(variant === 'portfolio' || variant === 'contact') && (
-              <Link
-                to="/"
-                className="flex items-center gap-2 text-sm text-neutral-300 hover:text-white transition-colors tracking-wide"
-              >
-                <HomeIcon className="w-4 h-4" />
-                Back to Home
-              </Link>
-            )}
             <a
               href={`tel:${settings?.mobile_number || '+91-98765-43210'}`}
               className="text-sm px-5 py-2 border border-white/20 rounded-full text-white hover:bg-white hover:text-neutral-950 transition-all"
@@ -193,16 +174,6 @@ export default function Navbar({ settings, variant = 'home' }: NavbarProps) {
                 </a>
               )
             ))}
-            {(variant === 'portfolio' || variant === 'contact') && (
-              <Link
-                to="/"
-                onClick={handleLinkClick}
-                className="flex items-center gap-2 text-3xl font-light text-white hover:text-neutral-300 transition-colors"
-              >
-                <HomeIcon className="w-7 h-7" />
-                Home
-              </Link>
-            )}
             <a
               href={`tel:${settings?.mobile_number || '+91-98765-43210'}`}
               onClick={handleLinkClick}
