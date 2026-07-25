@@ -10,16 +10,10 @@
     "FULLSTACK_PROJECT_REF": "kjfbmuffhqadxnjepfvk",
     "FULLSTACK_RESTORE_API_URL": "https://designarena.ai/api/fullstack-restore"
   },
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
   "rewrites": [
     {
       "source": "/api/(.*)",
       "destination": "/api/$1"
-    },
-    {
-      "source": "/admin/(.*)",
-      "destination": "/index.html"
     },
     {
       "source": "/((?!api/).*)",
