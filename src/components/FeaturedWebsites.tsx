@@ -1,15 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
-import { ExternalLink, Star, ArrowRight, Eye } from 'lucide-react';
-import SafeImage from './SafeImage';
+import { ExternalLink, Star, ArrowRight } from 'lucide-react';
+import LivePreview from './LivePreview';
 import Skeleton from './Skeleton';
-import WebsitePreviewModal from './WebsitePreviewModal';
 
 export default function FeaturedWebsites() {
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [previewModal, setPreviewModal] = useState<{ isOpen: boolean; url: string; title: string }>({ isOpen: false, url: '', title: '' });
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-100px' });
 
@@ -55,36 +53,24 @@ export default function FeaturedWebsites() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/30"
+                className="group relative rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/30 flex flex-col"
               >
-                <div className="absolute top-4 left-4 z-10 flex items-center gap-1 px-3 py-1 bg-white/10 backdrop-blur-md text-white text-xs rounded-full">
-                  <Star className="w-3 h-3" /> Featured
-                </div>
-                <div className="aspect-[4/3] overflow-hidden">
-                  <SafeImage
-                    src={item.image_url}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl text-white font-light mb-2">{item.title}</h3>
-                  <p className="text-neutral-400 text-sm line-clamp-2 mb-4">{item.description}</p>
-                  <div className="flex gap-3">
-                    {item.project_url && (
-                      <>
-                        <button
-                          onClick={() => setPreviewModal({ isOpen: true, url: item.project_url, title: item.title })}
-                          className="inline-flex items-center gap-2 text-sm text-white hover:text-neutral-300 transition-colors"
-                        >
-                          Preview <Eye className="w-3 h-3" />
-                        </button>
-                        <a href={item.project_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-white hover:text-neutral-300 transition-colors">
-                          View Project <ExternalLink className="w-3 h-3" />
-                        </a>
-                      </>
-                    )}
+                <div className="relative p-2">
+                  <div className="absolute top-4 left-4 z-10 flex items-center gap-1 px-3 py-1 bg-white/10 backdrop-blur-md text-white text-xs rounded-full">
+                    <Star className="w-3 h-3 text-amber-400 fill-amber-400" /> Featured
                   </div>
+                  <LivePreview url={item.project_url} title={item.title} aspectRatio="aspect-[4/3]" />
+                </div>
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-xl text-white font-light mb-2">{item.title}</h3>
+                    <p className="text-neutral-400 text-sm line-clamp-2 mb-4">{item.description}</p>
+                  </div>
+                  {item.project_url && (
+                    <a href={item.project_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-white hover:text-neutral-300 transition-colors mt-auto">
+                      View Project <ExternalLink className="w-3 h-3" />
+                    </a>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -105,12 +91,6 @@ export default function FeaturedWebsites() {
           </Link>
         </motion.div>
       </div>
-      <WebsitePreviewModal
-        isOpen={previewModal.isOpen}
-        onClose={() => setPreviewModal({ isOpen: false, url: '', title: '' })}
-        url={previewModal.url}
-        title={previewModal.title}
-      />
     </section>
   );
 }

@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import FeaturedWebsites from '../components/FeaturedWebsites';
-import Services from '../components/Services';
-import WhyChooseUs from '../components/WhyChooseUs';
 import Founders from '../components/Founders';
-import Testimonials from '../components/Testimonials';
-import FAQ from '../components/FAQ';
-import BuildYourProject from '../components/BuildYourProject';
-import Footer from '../components/Footer';
 import AboutUs from '../components/AboutUs';
+import Services from '../components/Services';
+import FAQ from '../components/FAQ';
+import LeadForm from '../components/LeadForm';
+import Footer from '../components/Footer';
 import SkinEffects from '../components/SkinEffects';
 import PageSkeleton from '../components/PageSkeleton';
 
@@ -35,7 +33,9 @@ export default function Home() {
     }
   };
 
-  useEffect(() => { fetchData(); }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   useEffect(() => {
     document.title = 'Devsiy | Websites & Lead Generation Systems for Businesses';
@@ -52,12 +52,10 @@ export default function Home() {
       <Hero settings={settings} />
       <FeaturedWebsites />
       <Founders />
-      <WhyChooseUs />
       <AboutUs settings={settings} />
       <Services />
-      <Testimonials />
       <FAQ />
-      <BuildYourProject />
+      <LeadForm settings={settings} />
       <Footer settings={settings} />
     </div>
   );
