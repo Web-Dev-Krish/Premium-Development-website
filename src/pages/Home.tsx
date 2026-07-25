@@ -6,7 +6,7 @@ import Founders from '../components/Founders';
 import AboutUs from '../components/AboutUs';
 import Services from '../components/Services';
 import FAQ from '../components/FAQ';
-import LeadForm from '../components/LeadForm';
+import BuildYourProject from '../components/BuildYourProject';
 import Footer from '../components/Footer';
 import SkinEffects from '../components/SkinEffects';
 import PageSkeleton from '../components/PageSkeleton';
@@ -55,7 +55,7 @@ export default function Home() {
       <AboutUs settings={settings} />
       <Services />
       <FAQ />
-      <LeadForm settings={settings} />
+      <BuildYourProject />
       <Footer settings={settings} />
     </div>
   );

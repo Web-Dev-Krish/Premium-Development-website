@@ -10,6 +10,7 @@ import faqsHandler from '../server/handlers/faqs.js';
 import siteSettingsHandler from '../server/handlers/site-settings.js';
 import uploadHandler from '../server/handlers/upload.js';
 import storageStatusHandler from '../server/handlers/storage-status.js';
+import recentWorkHandler from '../server/handlers/recent-work.js';
 
 const handlers = {
   categories: categoriesHandler,
@@ -23,6 +24,7 @@ const handlers = {
   'site-settings': siteSettingsHandler,
   upload: uploadHandler,
   'storage-status': storageStatusHandler,
+  'recent-work': recentWorkHandler,
 };
 
 export default async function handler(req, res) {

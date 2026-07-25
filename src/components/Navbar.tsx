@@ -18,6 +18,7 @@ export default function Navbar({ settings, variant = 'home' }: NavbarProps) {
     { label: 'Services', href: '#services' },
     { label: 'About', href: '#about' },
     { label: 'Portfolio', href: '/portfolio' },
+    { label: 'Recent Work', href: '/recent-work' },
     { label: 'Team', href: '#founders' },
     { label: 'FAQ', href: '#faq' },
     { label: 'Contact', href: '/contact' },

@@ -2,12 +2,13 @@ import { Routes, Route, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import {
   LayoutDashboard, Briefcase, Star, Palette, Server,
-  Users, HelpCircle, LogOut, Inbox, Settings
+  Users, HelpCircle, LogOut, Inbox, Settings, Film
 } from 'lucide-react';
 import Dashboard from '../components/admin/Dashboard';
 import LeadsManager from '../components/admin/LeadsManager';
 import ProjectsManager from '../components/admin/ProjectsManager';
 import FeaturedWebsitesManager from '../components/admin/FeaturedWebsitesManager';
+import RecentWorkManager from '../components/admin/RecentWorkManager';
 import SkinsManager from '../components/admin/SkinsManager';
 import HostingManager from '../components/admin/HostingManager';
 import FoundersManager from '../components/admin/FoundersManager';
@@ -28,6 +29,7 @@ export default function Admin() {
     { to: '/admin/leads', icon: Inbox, label: 'Leads' },
     { to: '/admin/projects', icon: Briefcase, label: 'Projects' },
     { to: '/admin/featured', icon: Star, label: 'Featured' },
+    { to: '/admin/recent-work', icon: Film, label: 'Recent Work' },
     { to: '/admin/skins', icon: Palette, label: 'Skins' },
     { to: '/admin/hosting', icon: Server, label: 'Hosting' },
     { to: '/admin/founders', icon: Users, label: 'Founders' },
@@ -73,6 +75,7 @@ export default function Admin() {
           <Route path="/leads" element={<LeadsManager />} />
           <Route path="/projects" element={<ProjectsManager />} />
           <Route path="/featured" element={<FeaturedWebsitesManager />} />
+          <Route path="/recent-work" element={<RecentWorkManager />} />
           <Route path="/skins" element={<SkinsManager />} />
           <Route path="/hosting" element={<HostingManager />} />
           <Route path="/founders" element={<FoundersManager />} />

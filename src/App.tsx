@@ -9,6 +9,7 @@ import './index.css';
 const Login = lazy(() => import('./pages/Login'));
 const Admin = lazy(() => import('./pages/Admin'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
+const RecentWork = lazy(() => import('./pages/RecentWork'));
 const Contact = lazy(() => import('./pages/Contact'));
 
 function App() {
@@ -20,6 +21,11 @@ function App() {
           <Route path="/portfolio" element={
             <Suspense fallback={<PageSkeleton />}>
               <Portfolio />
+            </Suspense>
+          } />
+          <Route path="/recent-work" element={
+            <Suspense fallback={<PageSkeleton />}>
+              <RecentWork />
             </Suspense>
           } />
           <Route path="/contact" element={
