@@ -21,5 +21,8 @@ export default defineConfig(async ({ mode }) => {
     plugins,
     envPrefix: ['VITE_', 'NEXT_PUBLIC_'],
     define: processEnvDefines,
+    ssr: {
+      noExternal: ['@supabase/supabase-js']
+    }
   };
 })
