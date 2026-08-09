@@ -2,16 +2,14 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Palette, ShoppingBag, Code2, Search, Settings, Smartphone, ArrowRight } from 'lucide-react';
+import { Globe, Smartphone, Target, Bot, ArrowRight } from 'lucide-react';
 import { services, ServiceData } from '../data/services';
 
-const iconMap: Record<ServiceData['icon'], typeof Palette> = {
-  palette: Palette,
-  'shopping-bag': ShoppingBag,
-  code: Code2,
+const iconMap: Record<ServiceData['icon'], typeof Globe> = {
+  globe: Globe,
   smartphone: Smartphone,
-  search: Search,
-  settings: Settings,
+  target: Target,
+  bot: Bot,
 };
 
 export default function Services() {
@@ -32,7 +30,7 @@ export default function Services() {
           <p className="text-neutral-400 max-w-xl mx-auto">Every project is an opportunity to build something remarkable. No templates. No shortcuts.</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {services.map((service, index) => {
             const Icon = iconMap[service.icon];
             return (
@@ -61,3 +59,4 @@ export default function Services() {
     </section>
   );
 }
+

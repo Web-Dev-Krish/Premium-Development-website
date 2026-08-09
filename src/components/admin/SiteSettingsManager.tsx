@@ -6,6 +6,7 @@ import { AlertCircle, CheckCircle2, Upload, ImageIcon } from 'lucide-react';
 const TEXT_FIELDS = [
   { key: 'hero_tagline', label: 'Hero Tagline', placeholder: 'WEBSITES BUILT TO GET YOU LEADS' },
   { key: 'hero_subtitle', label: 'Hero Subtitle', placeholder: 'We design and build websites...' },
+  { key: 'hero_video_url', label: 'Hero Background Video URL (.mp4)', placeholder: 'https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-grid-loop-41559-large.mp4', help: 'Direct link to an MP4 video loop to play in the homepage Hero background.' },
   { key: 'about_paragraph_1', label: 'About Us Paragraph 1', placeholder: 'Devsiy builds websites focused on results...', multiline: true },
   { key: 'about_paragraph_2', label: 'About Us Paragraph 2', placeholder: 'Our philosophy is simple...', multiline: true },
   { key: 'mobile_number', label: 'Mobile Number', placeholder: '+91-9876543210' },

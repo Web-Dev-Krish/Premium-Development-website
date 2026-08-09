@@ -1,19 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Palette, ShoppingBag, Code2, Search, Settings, Smartphone, ArrowLeft, Check, ArrowRight } from 'lucide-react';
+import { Globe, Smartphone, Target, Bot, ArrowLeft, Check, ArrowRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import PageSkeleton from '../components/PageSkeleton';
 import { getServiceBySlug, services, ServiceData } from '../data/services';
 
-const iconMap: Record<ServiceData['icon'], typeof Palette> = {
-  palette: Palette,
-  'shopping-bag': ShoppingBag,
-  code: Code2,
+const iconMap: Record<ServiceData['icon'], typeof Globe> = {
+  globe: Globe,
   smartphone: Smartphone,
-  search: Search,
-  settings: Settings,
+  target: Target,
+  bot: Bot,
 };
 
 export default function ServiceDetail() {

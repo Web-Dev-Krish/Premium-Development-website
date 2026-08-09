@@ -1,10 +1,10 @@
 // Central services data source.
-// Used by both the homepage Services grid and the individual
+// Used by both the homepage Services grid and individual
 // per-service detail pages (/services/:slug) so both stay in sync.
 
 export interface ServiceData {
   slug: string;
-  icon: 'palette' | 'shopping-bag' | 'code' | 'smartphone' | 'search' | 'settings';
+  icon: 'globe' | 'smartphone' | 'target' | 'bot';
   title: string;
   desc: string;
   longDescription: string[];
@@ -13,111 +13,75 @@ export interface ServiceData {
 
 export const services: ServiceData[] = [
   {
-    slug: 'website-design',
-    icon: 'palette',
-    title: 'Website Design',
-    desc: 'Websites designed around one goal: converting visitors into leads for your business.',
+    slug: 'website-development',
+    icon: 'globe',
+    title: 'Website Development',
+    desc: 'High-performance, custom-built websites designed to captivate visitors and drive real business growth.',
     longDescription: [
-      'We design websites with a single purpose in mind — turning visitors into paying customers. Every layout, headline, and call-to-action is placed with intent, not decoration.',
-      'Our process starts with understanding your business, your audience, and what makes you different. From there, we craft a visual identity and page structure that builds trust within seconds and guides visitors toward taking action.',
-      'No generic templates. Every site we design is built from scratch around your brand, your offer, and your goals.',
+      'We craft bespoke, modern websites optimized for speed, aesthetics, and maximum conversion rates. Every layout, animation, and line of code is structured to position your business as an industry leader.',
+      'From sleek corporate sites to scalable web applications, our engineering ensures a seamless user experience across all devices and screen sizes.',
+      'No generic templates. Every site we design is custom-built around your brand identity, business goals, and customer acquisition strategy.',
     ],
     features: [
-      'Custom layout and visual design, no templates',
-      'Conversion-focused copy and page structure',
-      'Mobile-first, fully responsive design',
-      'Brand-aligned visuals, colors, and typography',
-      'Fast-loading, modern front-end build',
+      'Custom layout & responsive front-end engineering',
+      'Lightning-fast load times & Core Web Vitals optimization',
+      'Built-in technical SEO & search engine indexability',
+      'Seamless CMS & content management integration',
+      'Analytics, lead tracking & conversion optimization',
     ],
   },
   {
-    slug: 'e-commerce-development',
-    icon: 'shopping-bag',
-    title: 'E-commerce Development',
-    desc: 'High-converting online stores on Shopify, WooCommerce, and custom platforms.',
-    longDescription: [
-      'We build online stores that make it effortless for customers to browse, decide, and buy. Whether you need a Shopify store, a WooCommerce setup, or a fully custom platform, we tailor the build to your products and audience.',
-      'Every store we build includes smooth product discovery, a frictionless checkout, and the integrations you need — payments, shipping, inventory, and marketing tools — all working together.',
-      'We also focus on performance and trust signals, because a slow or unclear store loses sales before a customer ever reaches checkout.',
-    ],
-    features: [
-      'Shopify, WooCommerce, and custom store builds',
-      'Secure payment gateway integration',
-      'Product catalog, inventory, and order management setup',
-      'Optimized checkout flow to reduce cart abandonment',
-      'Mobile shopping experience built for speed',
-    ],
-  },
-  {
-    slug: 'lead-generation-automation',
-    icon: 'code',
-    title: 'Lead Generation & Automation',
-    desc: 'Forms, follow-ups, and notifications that capture and route every lead automatically.',
-    longDescription: [
-      'A great website is only half the job — the other half is making sure every enquiry actually reaches you and gets followed up. We build lead capture systems that work quietly in the background so no opportunity slips through.',
-      'This includes smart forms, instant notifications, automated follow-up sequences, and routing rules that send each lead to the right place immediately.',
-      'The result is a system where leads are captured, organized, and acted on automatically, saving you hours of manual work every week.',
-    ],
-    features: [
-      'Custom lead capture forms with validation',
-      'Instant email/SMS notifications on new leads',
-      'Automated follow-up sequences',
-      'Lead routing and CRM-style organization',
-      'Analytics on lead sources and conversion rates',
-    ],
-  },
-  {
-    slug: 'ui-ux-design',
+    slug: 'mobile-app-development',
     icon: 'smartphone',
-    title: 'UI/UX Design',
-    desc: 'Interfaces designed to guide visitors toward taking action, not just look good.',
+    title: 'Mobile App Development',
+    desc: 'Native and cross-platform mobile apps for iOS and Android built for speed, scalability, and engagement.',
     longDescription: [
-      'Good design is more than aesthetics — it is about guiding people toward a decision. We design interfaces that are intuitive, visually clean, and structured to reduce friction at every step.',
-      'We map out user journeys before we design a single screen, making sure navigation, hierarchy, and calls-to-action feel natural rather than forced.',
-      'Whether it is a website, web app, or product interface, our goal is always the same: make it effortless for people to understand what to do next.',
+      'Transform your vision into intuitive, feature-rich mobile applications built for both iOS and Android platforms.',
+      'We specialize in modern cross-platform development (React Native & Flutter) and native architectures to deliver fluid performance, elegant UI, and robust offline capabilities.',
+      'From user onboarding and push notifications to secure payment gateways and cloud synchronization, we handle the complete mobile app lifecycle.',
     ],
     features: [
-      'User journey mapping and wireframing',
-      'Clean, modern visual interface design',
-      'Interaction and micro-animation design',
-      'Accessibility-conscious design choices',
-      'Design systems for consistency across pages',
+      'iOS & Android cross-platform app development',
+      'Intuitive, gesture-driven mobile UI/UX design',
+      'Secure backend API integration & real-time sync',
+      'Push notifications, user authentication & payments',
+      'App Store & Google Play Store publishing guidance',
     ],
   },
   {
-    slug: 'seo-performance',
-    icon: 'search',
-    title: 'SEO & Performance',
-    desc: 'Technical optimization that puts your business in front of the right audience.',
+    slug: 'google-meta-ads',
+    icon: 'target',
+    title: 'Google & Meta Ads',
+    desc: 'Data-driven paid ad campaigns across Google Search, Instagram, and Facebook to maximize ROI and leads.',
     longDescription: [
-      'A beautiful website does not help if no one finds it. We handle the technical and on-page SEO fundamentals that help your business rank and get discovered by the right audience.',
-      'This includes optimizing page speed, site structure, metadata, and content so search engines can properly understand and index your site.',
-      'We also focus on core web vitals and performance, because ranking well and providing a fast experience go hand in hand.',
+      'Scale your customer acquisition with high-converting paid ad campaigns across Google Ads, Instagram, and Facebook.',
+      'We combine granular audience targeting, persuasive ad copy, striking visual assets, and bulletproof conversion tracking to maximize your Return on Ad Spend (ROAS).',
+      'Continuous A/B testing and algorithmic bidding optimization ensure your ad budget is consistently directed to high-intent leads.',
     ],
     features: [
-      'Technical SEO audit and fixes',
-      'On-page optimization (metadata, headings, structure)',
-      'Page speed and Core Web Vitals optimization',
-      'Sitemap, robots.txt, and search console setup',
-      'Ongoing performance monitoring',
+      'Google Search, Display & YouTube campaign management',
+      'Meta (Facebook & Instagram) hyper-targeted ad sets',
+      'High-converting ad copy & custom visual creative assets',
+      'Pixel tracking, conversion setup & audience retargeting',
+      'Transparent ROI reporting & weekly campaign optimization',
     ],
   },
   {
-    slug: 'maintenance-support',
-    icon: 'settings',
-    title: 'Maintenance & Support',
-    desc: 'Ongoing care, updates, and hosting management so you stay focused on growth.',
+    slug: 'ai-chatbot-development',
+    icon: 'bot',
+    title: 'AI Chatbot Development',
+    desc: 'Custom 24/7 AI conversational agents trained on your business to qualify leads and answer queries automatically.',
     longDescription: [
-      'Launching a website is just the beginning. We provide ongoing maintenance and support so your site stays secure, fast, and up to date without you having to think about it.',
-      'This includes regular updates, monitoring, backups, and hosting management, along with quick turnaround support whenever you need a change or run into an issue.',
-      'Our goal is to let you focus on running your business while we take care of keeping your website running smoothly.',
+      'Supercharge customer engagement with custom AI chatbots trained specifically on your company business data, documentation, and offerings.',
+      'Our AI conversational agents instantly answer customer queries, qualify inbound leads, schedule appointments, and guide prospects through your sales funnel.',
+      'Seamlessly integrating with your website, WhatsApp, CRM, and internal databases, these intelligent bots work round-the-clock without human intervention.',
     ],
     features: [
-      'Regular updates and security monitoring',
-      'Scheduled backups and uptime monitoring',
-      'Hosting setup and management',
-      'Priority support for changes and fixes',
-      'Performance health checks',
+      'Custom LLM & knowledge-base trained AI bots',
+      '24/7 automated customer support & query resolution',
+      'Lead qualification & automated appointment booking',
+      'Seamless Website, WhatsApp & CRM integrations',
+      'Multi-language support & intelligent live-agent handover',
     ],
   },
 ];
@@ -125,3 +89,4 @@ export const services: ServiceData[] = [
 export function getServiceBySlug(slug: string | undefined): ServiceData | undefined {
   return services.find((s) => s.slug === slug);
 }
+
