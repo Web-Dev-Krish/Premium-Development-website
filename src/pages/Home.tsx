@@ -10,6 +10,8 @@ import BuildYourProject from '../components/BuildYourProject';
 import Footer from '../components/Footer';
 import SkinEffects from '../components/SkinEffects';
 import PageSkeleton from '../components/PageSkeleton';
+import { LogoMarquee } from '../components/LogoMarquee';
+import { supabase } from '../lib/supabase';
 
 export default function Home() {
   const [settings, setSettings] = useState<Record<string, string>>({});
@@ -50,6 +52,7 @@ export default function Home() {
       <SkinEffects skins={skins} />
       <Navbar settings={settings} />
       <Hero settings={settings} />
+      <LogoMarquee />
       <FeaturedWebsites />
       <Founders />
       <AboutUs settings={settings} />

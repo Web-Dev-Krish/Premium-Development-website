@@ -11,7 +11,7 @@ export default function Hero({ settings }: { settings: Record<string, string> })
   return (
     <section
       id="top"
-      className="relative flex w-full items-center overflow-hidden pt-[112px] sm:pt-[120px] lg:min-h-[100vh] lg:min-h-[100svh] lg:pt-[88px]"
+      className="relative flex w-full items-center overflow-hidden pt-[90px] sm:pt-[90px] lg:min-h-[85vh] lg:min-h-[85svh] lg:pt-[72px]"
     >
       {/* dedbot light theme backdrop */}
       <div
@@ -32,7 +32,7 @@ export default function Hero({ settings }: { settings: Record<string, string> })
         aria-hidden="true"
       />
 
-      <div className="relative mx-auto grid w-full max-w-[1280px] grid-cols-1 items-start gap-10 px-5 pb-14 pt-6 sm:px-8 sm:gap-12 sm:pb-20 sm:pt-10 lg:grid-cols-12 lg:items-center lg:gap-12 lg:px-10 lg:pt-[96px] lg:pb-16">
+      <div className="relative mx-auto grid w-full max-w-[1280px] grid-cols-1 items-start gap-8 px-5 pb-10 pt-2 sm:px-8 sm:gap-10 sm:pb-14 sm:pt-4 lg:grid-cols-12 lg:items-center lg:gap-10 lg:px-10 lg:pt-[20px] lg:pb-12">
         
         {/* copy column */}
         <div className="order-2 lg:order-1 lg:col-span-7">
@@ -40,7 +40,7 @@ export default function Hero({ settings }: { settings: Record<string, string> })
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: EASE }}
-            className="inline-flex max-w-full items-center gap-2.5 rounded-full border border-line bg-paper-2/70 py-1.5 pl-2 pr-4 backdrop-blur mb-6"
+            className="inline-flex max-w-full items-center gap-2.5 rounded-full border border-line bg-paper-2/70 py-1.5 pl-2 pr-4 backdrop-blur mb-4"
           >
             <span className="shrink-0 rounded-full bg-ink px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-paper">
               <Sparkles className="w-3 h-3 inline mr-1" /> NEW
@@ -55,11 +55,11 @@ export default function Hero({ settings }: { settings: Record<string, string> })
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
             className="font-medium leading-[1] tracking-[-0.042em]"
-            style={{ fontSize: "clamp(2.4rem, 7.2vw, 5.9rem)" }}
+            style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
           >
             <span className="block text-ink">We build websites</span>
             <span className="block text-ink-soft">that turn visitors into </span>
-            <span className="block pt-2 italic font-display text-accent" style={{ fontSize: "clamp(2.6rem, 7.8vw, 6.4rem)" }}>
+            <span className="block pt-2 italic font-display text-accent" style={{ fontSize: "clamp(2.2rem, 5.5vw, 5rem)" }}>
               customers.
             </span>
           </motion.h1>
