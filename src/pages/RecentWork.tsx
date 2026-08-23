@@ -32,7 +32,7 @@ export default function RecentWork() {
   useEffect(() => {
     fetchData();
     window.scrollTo(0, 0);
-    document.title = 'Recent Work | Devsiy';
+    document.title = 'Blogs | Devsiy';
   }, []);
 
   if (loading) {
@@ -53,20 +53,20 @@ export default function RecentWork() {
             className="text-center max-w-3xl mx-auto mb-16"
           >
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs tracking-widest text-neutral-300 mb-6">
-              <Film className="w-3.5 h-3.5" /> RECENT WORK & SHOWCASE
+              <ImageIcon className="w-3.5 h-3.5" /> BLOGS & ARTICLES
             </div>
             <h1 className="text-4xl md:text-6xl font-light text-white mb-6 tracking-tight">
-              Crafted with <span className="italic font-serif">precision.</span>
+              Our <span className="italic font-serif">blogs.</span>
             </h1>
             <p className="text-neutral-400 text-base md:text-lg">
-              Explore our latest video visualizers, design showcases, and interactive digital builds.
+              Explore our latest thoughts, insights, and stories.
             </p>
           </motion.div>
 
           {/* Grid of Recent Work */}
           {items.length === 0 ? (
             <div className="text-center py-20 border border-white/10 rounded-2xl bg-white/[0.01]">
-              <p className="text-neutral-500 text-sm">No recent work items uploaded yet.</p>
+              <p className="text-neutral-500 text-sm">No blog items uploaded yet.</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

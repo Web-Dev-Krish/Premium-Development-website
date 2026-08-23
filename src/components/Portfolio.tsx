@@ -45,7 +45,7 @@ export default function Portfolio() {
           className="text-center mb-12"
         >
           <p className="text-xs tracking-[0.2em] text-neutral-500 mb-4">SELECTED WORK</p>
-          <h2 className="text-3xl md:text-5xl font-light text-white mb-6">Blogs</h2>
+          <h2 className="text-3xl md:text-5xl font-light text-white mb-6">Our skill & <span className="italic font-serif">expertise.</span></h2>
         </motion.div>
 
         <div className="flex flex-wrap justify-center gap-3 mb-12">
