@@ -83,7 +83,7 @@ export default function Footer({ settings }: { settings?: Record<string, string>
       </div>
 
       <div className="overflow-hidden px-5 sm:px-8">
-        <p className="select-none bg-gradient-to-b from-ink/[0.09] to-ink/[0.015] bg-clip-text text-center font-sans text-[clamp(3.5rem,17vw,15rem)] font-semibold leading-[0.78] tracking-[-0.055em] text-transparent">
+        <p className="select-none bg-gradient-to-b from-ink/[0.09] to-ink/[0.015] bg-clip-text text-center font-sans text-[clamp(3.5rem,17vw,15rem)] font-semibold leading-[0.78] tracking-[-0.055em] text-transparent pb-6 sm:pb-10">
           devsiy
         </p>
       </div>
