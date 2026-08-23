@@ -36,7 +36,7 @@ export default function FeaturedWebsites() {
           <div className="grid md:grid-cols-3 gap-6">
             {Array.from({ length: 3 }).map((_, i) => (
               <div key={i} className="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/30">
-                <Skeleton className="aspect-[4/3] w-full rounded-none" />
+                <Skeleton className="aspect-[9/16] md:aspect-video w-full rounded-none" />
                 <div className="p-6 space-y-3">
                   <Skeleton className="h-5 w-2/3" />
                   <Skeleton className="h-3 w-full" />
@@ -59,7 +59,7 @@ export default function FeaturedWebsites() {
                   <div className="absolute top-4 left-4 z-10 flex items-center gap-1 px-3 py-1 bg-white/10 backdrop-blur-md text-white text-xs rounded-full">
                     <Star className="w-3 h-3 text-amber-400 fill-amber-400" /> Featured
                   </div>
-                  <LivePreview url={item.project_url} title={item.title} aspectRatio="aspect-[4/3]" />
+                  <LivePreview url={item.project_url} title={item.title} aspectRatio="aspect-[9/16] md:aspect-video" />
                 </div>
                 <div className="p-6 flex-1 flex flex-col justify-between">
                   <div>
