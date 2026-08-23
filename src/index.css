@@ -136,3 +136,14 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+@keyframes dedbot-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: dedbot-marquee 38s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
