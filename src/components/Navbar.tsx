@@ -20,7 +20,7 @@ export default function Navbar({ settings }: NavbarProps) {
   const links = [
     { label: 'Home', href: '/' },
     { label: 'Portfolio', href: '/portfolio' },
-    { label: 'Blogs', href: '/recent-work' },
+    { label: 'Blogs', href: '/blogs' },
     { label: 'Contact', href: '/contact' },
   ];
 

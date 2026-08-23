@@ -5,6 +5,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import PageSkeleton from './components/PageSkeleton';
 import './index.css';
+import DevBot from './components/DevBot';
 
 const Login = lazy(() => import('./pages/Login'));
 const Admin = lazy(() => import('./pages/Admin'));
@@ -24,7 +25,7 @@ function App() {
               <Portfolio />
             </Suspense>
           } />
-          <Route path="/recent-work" element={
+          <Route path="/blogs" element={
             <Suspense fallback={<PageSkeleton />}>
               <RecentWork />
             </Suspense>
@@ -52,6 +53,7 @@ function App() {
             </ProtectedRoute>
           } />
         </Routes>
+        <DevBot />
       </BrowserRouter>
     </AuthProvider>
   );

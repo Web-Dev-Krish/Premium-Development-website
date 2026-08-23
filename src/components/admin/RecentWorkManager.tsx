@@ -110,7 +110,7 @@ export default function RecentWorkManager() {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm('Delete recent work item?')) return;
+    if (!confirm('Delete blog?')) return;
     try {
       await adminFetch('/api/recent-work', { method: 'DELETE', body: JSON.stringify({ id }) });
       fetchData();
@@ -123,14 +123,14 @@ export default function RecentWorkManager() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h2 className="text-2xl font-light text-white">Recent Work Showcase</h2>
-          <p className="text-sm text-neutral-400 mt-1">Manage recent work images, videos, and social link attachments</p>
+          <h2 className="text-2xl font-light text-white">Blogs Showcase</h2>
+          <p className="text-sm text-neutral-400 mt-1">Manage blog images, videos, and social link attachments</p>
         </div>
         <button
           onClick={() => { reset(); setShowForm(true); }}
           className="flex items-center gap-2 px-4 py-2 bg-white text-neutral-950 rounded-lg text-sm font-medium hover:bg-neutral-200 transition-colors"
         >
-          <Plus className="w-4 h-4" /> Add Recent Work
+          <Plus className="w-4 h-4" /> Add Blog
         </button>
       </div>
 
@@ -142,7 +142,7 @@ export default function RecentWorkManager() {
           onSubmit={handleSubmit}
         >
           <div className="flex items-center justify-between border-b border-white/10 pb-4">
-            <h3 className="text-lg text-white font-light">{editing ? 'Edit Recent Work' : 'New Recent Work'}</h3>
+            <h3 className="text-lg text-white font-light">{editing ? 'Edit Blog' : 'New Blog'}</h3>
             <button type="button" onClick={reset} className="text-neutral-500 hover:text-white"><X className="w-5 h-5" /></button>
           </div>
 
@@ -331,7 +331,7 @@ export default function RecentWorkManager() {
               type="submit"
               className="px-6 py-2 bg-white text-neutral-950 rounded-lg text-sm font-medium hover:bg-neutral-200 transition-colors"
             >
-              {editing ? 'Update Work' : 'Create Recent Work'}
+              {editing ? 'Update Work' : 'Create Blog'}
             </button>
           </div>
         </motion.form>

@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowDown, Sparkles, Volume2, VolumeX, Play, Pause, MessageCircle } from 'lucide-react';
+import { ArrowDown, Sparkles, Volume2, VolumeX, Play, Pause } from 'lucide-react';
 import SafeImage from './SafeImage';
-import InteractiveChatPreview from './InteractiveChatPreview';
 
 export default function Hero({ settings }: { settings: Record<string, string> }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -79,83 +78,55 @@ export default function Hero({ settings }: { settings: Record<string, string> })
       )}
 
       {/* Hero Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center min-h-[80vh] pt-20">
-        <div className="text-left">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs tracking-widest text-neutral-300 mb-8"
-          >
-            <Sparkles className="w-3 h-3 text-white" />
-            <span className="bg-white text-neutral-900 px-2 py-0.5 rounded-full text-[10px] font-bold mr-1">NEW</span>
-            {settings?.hero_tagline || 'AI chatbot guardrails shipped this week'}
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-medium text-white leading-[1.1] tracking-tight mb-6"
-          >
-            Support tickets, <br/>
-            before your team <br/>
-            even sees them <br/>
-            <span className="font-light">68% already</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg text-neutral-400 max-w-md mb-10 font-light leading-relaxed"
-          >
-            {settings?.hero_subtitle || 'dedbot is an AI chatbot trained on your docs, tickets and site. It answers in 42 languages, cites its sources, escalates the genuinely hard stuff to a human — and never takes a sick day.'}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-start gap-4"
-          >
-            <Link
-              to="/contact"
-              className="px-8 py-4 bg-white text-neutral-950 rounded-full text-sm font-medium tracking-wide hover:bg-neutral-200 transition-colors shadow-lg shadow-white/5 flex items-center gap-2"
-            >
-              Start free — 14 days <span className="text-lg leading-none">→</span>
-            </Link>
-            <a
-              href="#services"
-              className="px-8 py-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-sm text-white hover:bg-white/10 transition-colors flex items-center gap-2"
-            >
-              <MessageCircle className="w-4 h-4" />
-              Talk to the bot
-            </a>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-8 flex items-center gap-6 text-[10px] tracking-[0.2em] text-neutral-500 font-medium uppercase"
-          >
-            <span>SOC 2 Type II</span>
-            <span className="w-1 h-1 rounded-full bg-neutral-600"></span>
-            <span>GDPR</span>
-            <span className="w-1 h-1 rounded-full bg-neutral-600"></span>
-            <span>No card required</span>
-          </motion.div>
-        </div>
-
-        {/* Right side: Interactive element */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full flex justify-center lg:justify-end"
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs tracking-widest text-neutral-300 mb-8"
         >
-          <InteractiveChatPreview />
+          <Sparkles className="w-3 h-3 text-white" />
+          {settings?.hero_tagline || 'WEBSITES BUILT TO GET YOU LEADS'}
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-[1.1] tracking-tight mb-6"
+        >
+          We build websites
+          <span className="block text-neutral-400">that turn visitors into </span>
+          <span className="italic font-serif text-white">customers.</span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed"
+        >
+          {settings?.hero_subtitle || 'We design, build, and automate websites that generate real leads for your business — not just good looks.'}
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <Link
+            to="/contact"
+            className="px-8 py-4 bg-white text-neutral-950 rounded-full text-sm font-medium tracking-wide hover:bg-neutral-200 transition-colors shadow-lg shadow-white/5"
+          >
+            Start Your Project
+          </Link>
+          <a
+            href="#services"
+            className="px-8 py-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-sm text-white hover:bg-white/10 transition-colors"
+          >
+            Explore Services
+          </a>
         </motion.div>
       </div>
 

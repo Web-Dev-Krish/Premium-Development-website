@@ -45,7 +45,7 @@ export default function Portfolio() {
           className="text-center mb-12"
         >
           <p className="text-xs tracking-[0.2em] text-neutral-500 mb-4">SELECTED WORK</p>
-          <h2 className="text-3xl md:text-5xl font-light text-white mb-6">Our skill & <span className="italic font-serif">expertise.</span></h2>
+          <h2 className="text-3xl md:text-5xl font-light text-white mb-6">Recent <span className="italic font-serif">projects.</span></h2>
         </motion.div>
 
         <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -70,7 +70,7 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/30">
-                <Skeleton className="aspect-[9/16] md:aspect-video w-full rounded-none" />
+                <Skeleton className="aspect-[4/3] w-full rounded-none" />
                 <div className="p-6 space-y-3">
                   <Skeleton className="h-3 w-20" />
                   <Skeleton className="h-5 w-2/3" />
@@ -93,7 +93,7 @@ export default function Portfolio() {
                   className="group relative rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/30 flex flex-col"
                 >
                   <div className="p-2">
-                    <LivePreview url={project.project_url} title={project.title} aspectRatio="aspect-[9/16] md:aspect-video" />
+                    <LivePreview url={project.project_url} title={project.title} aspectRatio="aspect-[4/3]" />
                   </div>
                   <div className="p-6 flex-1 flex flex-col justify-between">
                     <div>
