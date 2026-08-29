@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowDown, Sparkles } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 
 // Hero background images — served from /public folder.
 // To change images, simply replace the files in /public:
@@ -45,53 +45,32 @@ export default function Hero({ settings }: { settings: Record<string, string> })
         <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/70 via-transparent to-neutral-950" />
       </div>
 
-      {/* Hero Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
+      {/* Hero Content — minimal, letting the images breathe */}
+      <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs tracking-widest text-neutral-300 mb-8"
+          className="text-3xl md:text-5xl font-light text-white tracking-tight mb-10"
         >
-          <Sparkles className="w-3 h-3 text-white" />
-          {settings?.hero_tagline || 'WEBSITES BUILT TO GET YOU LEADS'}
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-4xl md:text-6xl lg:text-7xl font-light text-white leading-[1.1] tracking-tight mb-6"
-        >
-          We build websites
-          <span className="block text-neutral-400">that turn visitors into </span>
-          <span className="italic font-serif text-white">customers.</span>
+          Devsiy — <span className="italic font-serif">Digital Growth Partners</span>
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-lg md:text-xl text-neutral-300 max-w-2xl mx-auto mb-10 font-light leading-relaxed"
-        >
-          {settings?.hero_subtitle || 'We design, build, and automate websites that generate real leads for your business — not just good looks.'}
-        </motion.p>
-
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="flex items-center justify-center gap-4"
         >
           <Link
             to="/contact"
-            className="px-8 py-4 bg-white text-neutral-950 rounded-full text-sm font-medium tracking-wide hover:bg-neutral-200 transition-colors shadow-lg shadow-white/5"
+            className="px-7 py-3 bg-white text-neutral-950 rounded-full text-sm font-medium tracking-wide hover:bg-neutral-200 transition-colors"
           >
             Start Your Project
           </Link>
           <a
             href="#services"
-            className="px-8 py-4 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-sm text-white hover:bg-white/10 transition-colors"
+            className="px-7 py-3 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-sm text-white hover:bg-white/10 transition-colors"
           >
             Explore Services
           </a>
