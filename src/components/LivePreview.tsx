@@ -8,7 +8,7 @@ interface LivePreviewProps {
   aspectRatio?: string;
 }
 
-export default function LivePreview({ url, title, className = '', aspectRatio = 'aspect-[4/3]' }: LivePreviewProps) {
+export default function LivePreview({ url, title, className = '', aspectRatio = 'aspect-[16/10]' }: LivePreviewProps) {
   const [iframeKey, setIframeKey] = useState(0);
   const [hasError, setHasError] = useState(false);
 
