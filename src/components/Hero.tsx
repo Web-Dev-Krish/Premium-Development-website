@@ -53,7 +53,8 @@ export default function Hero({ settings }: { settings: Record<string, string> })
           transition={{ duration: 0.8 }}
           className="text-3xl md:text-5xl font-light text-white tracking-tight mb-10"
         >
-          Devsiy — <span className="italic font-serif">Digital Growth Partners</span>
+          Devsiy
+          <span className="block italic font-serif">Digital Growth Partners</span>
         </motion.h1>
 
         <motion.div
