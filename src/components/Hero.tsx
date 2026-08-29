@@ -53,7 +53,7 @@ export default function Hero({ settings }: { settings: Record<string, string> })
           transition={{ duration: 0.8 }}
           className="mb-10"
         >
-          <span className="inline-block text-4xl md:text-6xl font-bold text-white tracking-tight px-6 py-2 bg-neutral-950/80 backdrop-blur-sm rounded-xl">
+          <span className="inline-block text-4xl md:text-6xl font-bold text-white tracking-tight" style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}>
             Devsiy
           </span>
           <span className="block mt-4 text-2xl md:text-4xl font-light italic font-serif text-white/90 tracking-tight">

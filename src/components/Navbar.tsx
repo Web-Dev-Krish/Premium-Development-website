@@ -136,7 +136,7 @@ export default function Navbar({ settings }: NavbarProps) {
           ref={navRef}
           layout
           transition={{
-            layout: { type: 'spring', stiffness: 400, damping: 35, mass: 0.8 },
+            layout: { type: 'spring', stiffness: 180, damping: 28, mass: 1.2 },
           }}
           className={`flex items-center justify-center rounded-full border overflow-hidden ${
             isExpanded
@@ -169,7 +169,7 @@ export default function Navbar({ settings }: NavbarProps) {
                 initial={{ opacity: 0, width: 0 }}
                 animate={{ opacity: 1, width: 'auto' }}
                 exit={{ opacity: 0, width: 0 }}
-                transition={{ duration: 0.25, ease: 'easeInOut' }}
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
                 className="hidden md:flex items-center gap-8 overflow-hidden whitespace-nowrap"
               >
                 {links.map((link) =>
@@ -206,7 +206,7 @@ export default function Navbar({ settings }: NavbarProps) {
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.5 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.35 }}
                 className="md:hidden relative z-[60] flex items-center justify-center w-10 h-10 text-white hover:bg-white/10 rounded-full transition-colors"
                 onClick={toggleMenu}
               >
