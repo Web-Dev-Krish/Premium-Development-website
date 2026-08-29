@@ -1,81 +1,49 @@
-import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowDown, Sparkles, Volume2, VolumeX, Play, Pause } from 'lucide-react';
-import SafeImage from './SafeImage';
+import { ArrowDown, Sparkles } from 'lucide-react';
+
+// Hero background images — served from /public folder.
+// To change images, simply replace the files in /public:
+//   hero1.png, hero2.png, hero3.png
+const heroImages = ['/hero1.png', '/hero2.png', '/hero3.png'];
+
+const FADE_INTERVAL_MS = 5000; // Switch image every 5 seconds
 
 export default function Hero({ settings }: { settings: Record<string, string> }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const [videoError, setVideoError] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const videoUrl = settings?.hero_video_url || 'https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-grid-loop-41559-large.mp4';
-  const hasImage = !!settings?.hero_image_url;
-
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        videoRef.current.play().then(() => setIsPlaying(true)).catch(() => {});
-      }
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
+  // Auto-advance the slideshow
+  const advance = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % heroImages.length);
+  }, []);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        if (videoRef.current) {
-          videoRef.current.muted = true;
-          videoRef.current.play().catch(() => {});
-        }
-      });
-    }
-  }, [videoUrl]);
+    const timer = setInterval(advance, FADE_INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, [advance]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Functional Background Video */}
-      {!videoError ? (
-        <div className="absolute inset-0 z-0">
-          <video
-            ref={videoRef}
-            src={videoUrl}
-            autoPlay
-            loop
-            muted={isMuted}
-            playsInline
-            onError={() => setVideoError(true)}
-            className="w-full h-full object-cover opacity-50 transition-opacity duration-1000"
+      {/* Background Images with Fade Effect */}
+      <div className="absolute inset-0 z-0">
+        <AnimatePresence mode="popLayout">
+          <motion.img
+            key={currentIndex}
+            src={heroImages[currentIndex]}
+            alt=""
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: 'easeInOut' }}
+            className="absolute inset-0 w-full h-full object-cover"
+            draggable={false}
           />
-          {/* Gradients and Dark Overlay for Premium Look & High Contrast */}
-          <div className="absolute inset-0 bg-neutral-950/70 backdrop-blur-[1px]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/80 via-transparent to-neutral-950" />
-        </div>
-      ) : hasImage ? (
-        <div className="absolute inset-0 z-0">
-          <SafeImage
-            src={settings.hero_image_url}
-            alt="Hero background"
-            className="w-full h-full object-cover opacity-40"
-          />
-          <div className="absolute inset-0 bg-neutral-950/70" />
-        </div>
-      ) : (
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.04),transparent_50%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(255,255,255,0.02),transparent_40%)]" />
-        </div>
-      )}
+        </AnimatePresence>
+        {/* Dark overlays for readability */}
+        <div className="absolute inset-0 bg-neutral-950/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/70 via-transparent to-neutral-950" />
+      </div>
 
       {/* Hero Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
@@ -130,33 +98,21 @@ export default function Hero({ settings }: { settings: Record<string, string> })
         </motion.div>
       </div>
 
-      {/* Video Controls */}
-      {!videoError && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="absolute bottom-8 right-8 z-20 flex items-center gap-2 bg-neutral-900/80 backdrop-blur-md border border-white/10 rounded-full p-1.5 px-3"
-        >
+      {/* Image Indicators */}
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2">
+        {heroImages.map((_, idx) => (
           <button
-            onClick={togglePlay}
-            aria-label={isPlaying ? 'Pause background video' : 'Play background video'}
-            className="p-1.5 text-neutral-400 hover:text-white transition-colors rounded-full"
-            title={isPlaying ? 'Pause Video' : 'Play Video'}
-          >
-            {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-          </button>
-          <div className="w-[1px] h-4 bg-white/10" />
-          <button
-            onClick={toggleMute}
-            aria-label={isMuted ? 'Unmute background video' : 'Mute background video'}
-            className="p-1.5 text-neutral-400 hover:text-white transition-colors rounded-full"
-            title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
-          >
-            {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
-          </button>
-        </motion.div>
-      )}
+            key={idx}
+            onClick={() => setCurrentIndex(idx)}
+            className={`transition-all duration-300 rounded-full ${
+              idx === currentIndex
+                ? 'w-8 h-2 bg-white'
+                : 'w-2 h-2 bg-white/40 hover:bg-white/60'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
 
       {/* Scroll Down Indicator */}
       <motion.div
@@ -172,4 +128,3 @@ export default function Hero({ settings }: { settings: Record<string, string> })
     </section>
   );
 }
-

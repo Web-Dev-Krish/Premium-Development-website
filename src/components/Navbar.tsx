@@ -18,10 +18,11 @@ export default function Navbar({ settings }: NavbarProps) {
 
   // Global navigation — identical on every page of the site.
   const links = [
-    { label: 'Home', href: '/' },
-    { label: 'Portfolio', href: '/portfolio' },
-    { label: 'Recent Work', href: '/recent-work' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'HOME', href: '/' },
+    { label: 'ABOUT US', href: '/#about' },
+    { label: 'SERVICES', href: '/#services' },
+    { label: 'WORKS', href: '/portfolio' },
+    { label: 'CONTACT', href: '/contact' },
   ];
 
   // Scroll state with throttling via requestAnimationFrame
@@ -91,24 +92,31 @@ export default function Navbar({ settings }: NavbarProps) {
 
   return (
     <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled || mobileOpen ? 'bg-neutral-950/95 backdrop-blur-md border-b border-white/10' : 'bg-transparent border-b border-transparent'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-6 h-[72px] flex items-center justify-between">
-          <Link to="/" className="text-2xl font-light tracking-[0.2em] text-white">
-            DEVSIY
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 md:pt-6">
+        <div
+          className={`flex items-center gap-6 md:gap-10 px-6 md:px-10 h-[56px] md:h-[60px] rounded-full border transition-all duration-500 ${
+            scrolled || mobileOpen
+              ? 'bg-neutral-950/90 backdrop-blur-xl border-white/10 shadow-2xl shadow-black/40'
+              : 'bg-neutral-900/70 backdrop-blur-md border-white/[0.06] shadow-xl shadow-black/20'
+          }`}
+        >
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 flex-shrink-0">
+            <img
+              src="/favicon.svg"
+              alt="Devsiy"
+              className="w-8 h-8 md:w-9 md:h-9 rounded-lg"
+            />
           </Link>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
-            {links.map((link) => (
-              link.href.startsWith('/') ? (
+            {links.map((link) =>
+              link.href.startsWith('/') && !link.href.includes('#') ? (
                 <Link
                   key={link.href}
                   to={link.href}
-                  className="text-sm text-neutral-300 hover:text-white transition-colors tracking-wide"
+                  className="text-[13px] text-neutral-300 hover:text-white transition-colors tracking-[0.15em] font-medium"
                 >
                   {link.label}
                 </Link>
@@ -116,35 +124,29 @@ export default function Navbar({ settings }: NavbarProps) {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-neutral-300 hover:text-white transition-colors tracking-wide"
+                  className="text-[13px] text-neutral-300 hover:text-white transition-colors tracking-[0.15em] font-medium"
                 >
                   {link.label}
                 </a>
               )
-            ))}
-            <a
-              href={`tel:${settings?.mobile_number || '+91-98765-43210'}`}
-              className="text-sm px-5 py-2 border border-white/20 rounded-full text-white hover:bg-white hover:text-neutral-950 transition-all"
-            >
-              {settings?.mobile_number || '+91-98765-43210'}
-            </a>
+            )}
           </div>
 
-          {/* Mobile toggle — placed above overlay via z-index */}
+          {/* Mobile toggle */}
           <button
             ref={buttonRef}
             type="button"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
-            className="md:hidden relative z-[60] flex items-center justify-center w-11 h-11 text-white hover:bg-white/10 rounded-lg transition-colors"
+            className="md:hidden relative z-[60] flex items-center justify-center w-10 h-10 text-white hover:bg-white/10 rounded-full transition-colors"
             onClick={toggleMenu}
           >
-            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile menu overlay — sibling to nav so it sits above page content but below the toggle button */}
+      {/* Mobile menu overlay */}
       {mobileOpen && (
         <div
           ref={menuRef}
@@ -153,13 +155,13 @@ export default function Navbar({ settings }: NavbarProps) {
           role="dialog"
         >
           <div className="flex flex-col items-center justify-center h-full gap-8 px-6 pt-[72px]">
-            {links.map((link) => (
-              link.href.startsWith('/') ? (
+            {links.map((link) =>
+              link.href.startsWith('/') && !link.href.includes('#') ? (
                 <Link
                   key={link.href}
                   to={link.href}
                   onClick={handleLinkClick}
-                  className="text-3xl font-light text-white hover:text-neutral-300 transition-colors"
+                  className="text-2xl font-light text-white hover:text-neutral-300 transition-colors tracking-[0.15em]"
                 >
                   {link.label}
                 </Link>
@@ -168,16 +170,16 @@ export default function Navbar({ settings }: NavbarProps) {
                   key={link.href}
                   href={link.href}
                   onClick={handleLinkClick}
-                  className="text-3xl font-light text-white hover:text-neutral-300 transition-colors"
+                  className="text-2xl font-light text-white hover:text-neutral-300 transition-colors tracking-[0.15em]"
                 >
                   {link.label}
                 </a>
               )
-            ))}
+            )}
             <a
               href={`tel:${settings?.mobile_number || '+91-98765-43210'}`}
               onClick={handleLinkClick}
-              className="mt-6 px-8 py-3 bg-white text-neutral-950 rounded-full text-sm font-medium"
+              className="mt-6 px-8 py-3 bg-white text-neutral-950 rounded-full text-sm font-medium tracking-wide"
             >
               {settings?.mobile_number || '+91-98765-43210'}
             </a>
