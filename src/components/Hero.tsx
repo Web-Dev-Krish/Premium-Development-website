@@ -51,10 +51,14 @@ export default function Hero({ settings }: { settings: Record<string, string> })
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-3xl md:text-5xl font-light text-white tracking-tight mb-10"
+          className="mb-10"
         >
-          Devsiy
-          <span className="block italic font-serif">Digital Growth Partners</span>
+          <span className="inline-block text-4xl md:text-6xl font-bold text-white tracking-tight px-6 py-2 bg-neutral-950/80 backdrop-blur-sm rounded-xl">
+            Devsiy
+          </span>
+          <span className="block mt-4 text-2xl md:text-4xl font-light italic font-serif text-white/90 tracking-tight">
+            Digital Growth Partners
+          </span>
         </motion.h1>
 
         <motion.div

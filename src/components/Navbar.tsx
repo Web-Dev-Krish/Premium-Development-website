@@ -1,22 +1,26 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   settings: Record<string, string>;
-  // Kept for backward compatibility with existing pages that still pass a
-  // variant prop; the navbar now shows the same global links everywhere.
   variant?: 'home' | 'portfolio' | 'contact';
 }
 
 export default function Navbar({ settings }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const navRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
+  const hoverTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Global navigation — identical on every page of the site.
+  // Navbar is "expanded" when at top of page, or when hovered/touched while scrolled
+  const isExpanded = !scrolled || hovered || mobileOpen;
+
   const links = [
     { label: 'HOME', href: '/' },
     { label: 'ABOUT US', href: '/#about' },
@@ -25,7 +29,7 @@ export default function Navbar({ settings }: NavbarProps) {
     { label: 'CONTACT', href: '/contact' },
   ];
 
-  // Scroll state with throttling via requestAnimationFrame
+  // Scroll detection
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
@@ -33,7 +37,7 @@ export default function Navbar({ settings }: NavbarProps) {
         window.requestAnimationFrame(() => {
           const y = window.scrollY;
           if (Math.abs(y - lastScrollY.current) > 5) {
-            setScrolled(y > 50);
+            setScrolled(y > 80);
             lastScrollY.current = y;
           }
           ticking = false;
@@ -46,6 +50,41 @@ export default function Navbar({ settings }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Proximity detection — expand when mouse/finger is near the top of the viewport
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!scrolled) return;
+      // Expand when mouse is within 80px of the top
+      if (e.clientY <= 80) {
+        if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+        setHovered(true);
+      } else {
+        // Delay collapse so it feels smooth
+        if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+        hoverTimeout.current = setTimeout(() => setHovered(false), 400);
+      }
+    };
+
+    // Touch: expand on tap near top
+    const handleTouchStart = (e: TouchEvent) => {
+      if (!scrolled) return;
+      const touch = e.touches[0];
+      if (touch && touch.clientY <= 80) {
+        setHovered(true);
+        if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+        hoverTimeout.current = setTimeout(() => setHovered(false), 3000);
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('touchstart', handleTouchStart);
+      if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+    };
+  }, [scrolled]);
+
   // Close menu on Escape key
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -57,7 +96,7 @@ export default function Navbar({ settings }: NavbarProps) {
     return () => document.removeEventListener('keydown', handleKey);
   }, [mobileOpen]);
 
-  // Click outside to close — explicitly exclude the toggle button
+  // Click outside to close
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent | MouseEvent | TouchEvent) => {
       const target = event.target as Node;
@@ -92,58 +131,90 @@ export default function Navbar({ settings }: NavbarProps) {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 md:pt-6">
-        <div
-          className={`flex items-center gap-6 md:gap-10 px-6 md:px-10 h-[56px] md:h-[60px] rounded-full border transition-all duration-500 ${
-            scrolled || mobileOpen
-              ? 'bg-neutral-950/90 backdrop-blur-xl border-white/10 shadow-2xl shadow-black/40'
-              : 'bg-neutral-900/70 backdrop-blur-md border-white/[0.06] shadow-xl shadow-black/20'
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 md:pt-5">
+        <motion.div
+          ref={navRef}
+          layout
+          transition={{
+            layout: { type: 'spring', stiffness: 400, damping: 35, mass: 0.8 },
+          }}
+          className={`flex items-center justify-center rounded-full border overflow-hidden ${
+            isExpanded
+              ? 'bg-neutral-950/85 backdrop-blur-xl border-white/10 shadow-2xl shadow-black/40 px-6 md:px-10 h-[54px] md:h-[58px] gap-6 md:gap-10'
+              : 'bg-neutral-950/90 backdrop-blur-xl border-white/[0.08] shadow-xl shadow-black/30 px-2 h-[44px] cursor-pointer'
           }`}
+          onMouseEnter={() => { if (scrolled) setHovered(true); }}
+          onMouseLeave={() => {
+            if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
+            hoverTimeout.current = setTimeout(() => setHovered(false), 300);
+          }}
+          onClick={() => { if (!isExpanded) setHovered(true); }}
         >
-          {/* Logo */}
+          {/* Logo — always visible */}
           <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-            <img
+            <motion.img
+              layout
               src="/favicon.svg"
               alt="Devsiy"
-              className="w-8 h-8 md:w-9 md:h-9 rounded-lg"
+              className={`rounded-lg transition-all duration-300 ${
+                isExpanded ? 'w-8 h-8 md:w-9 md:h-9' : 'w-8 h-8'
+              }`}
             />
           </Link>
 
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
-            {links.map((link) =>
-              link.href.startsWith('/') && !link.href.includes('#') ? (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  className="text-[13px] text-neutral-300 hover:text-white transition-colors tracking-[0.15em] font-medium"
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-[13px] text-neutral-300 hover:text-white transition-colors tracking-[0.15em] font-medium"
-                >
-                  {link.label}
-                </a>
-              )
+          {/* Desktop links — only when expanded */}
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.div
+                initial={{ opacity: 0, width: 0 }}
+                animate={{ opacity: 1, width: 'auto' }}
+                exit={{ opacity: 0, width: 0 }}
+                transition={{ duration: 0.25, ease: 'easeInOut' }}
+                className="hidden md:flex items-center gap-8 overflow-hidden whitespace-nowrap"
+              >
+                {links.map((link) =>
+                  link.href.startsWith('/') && !link.href.includes('#') ? (
+                    <Link
+                      key={link.href}
+                      to={link.href}
+                      className="text-[13px] text-neutral-300 hover:text-white transition-colors tracking-[0.15em] font-medium"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      className="text-[13px] text-neutral-300 hover:text-white transition-colors tracking-[0.15em] font-medium"
+                    >
+                      {link.label}
+                    </a>
+                  )
+                )}
+              </motion.div>
             )}
-          </div>
+          </AnimatePresence>
 
-          {/* Mobile toggle */}
-          <button
-            ref={buttonRef}
-            type="button"
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={mobileOpen}
-            className="md:hidden relative z-[60] flex items-center justify-center w-10 h-10 text-white hover:bg-white/10 rounded-full transition-colors"
-            onClick={toggleMenu}
-          >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
+          {/* Mobile toggle — only when expanded */}
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.button
+                ref={buttonRef}
+                type="button"
+                aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileOpen}
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.5 }}
+                transition={{ duration: 0.2 }}
+                className="md:hidden relative z-[60] flex items-center justify-center w-10 h-10 text-white hover:bg-white/10 rounded-full transition-colors"
+                onClick={toggleMenu}
+              >
+                {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </motion.button>
+            )}
+          </AnimatePresence>
+        </motion.div>
       </nav>
 
       {/* Mobile menu overlay */}
