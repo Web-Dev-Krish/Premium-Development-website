@@ -29,7 +29,7 @@ export default function AboutUs({ settings }: AboutUsProps) {
           >
             <p className="text-xs tracking-[0.2em] text-neutral-500 mb-4">ABOUT DEVSIY</p>
             <h2 className="text-3xl md:text-5xl font-light text-white mb-6">
-              We build websites that <span className="italic font-serif">deliver results.</span>
+              We build Custom Software & Automations that <span className="italic font-serif">Scale Your Company.</span>
             </h2>
             <div className="space-y-4 text-neutral-400 leading-relaxed mb-8">
               <p>
