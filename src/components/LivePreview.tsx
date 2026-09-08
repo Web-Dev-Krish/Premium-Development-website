@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ExternalLink, Lock, Globe, RefreshCw } from 'lucide-react';
 
 interface LivePreviewProps {
@@ -8,9 +8,23 @@ interface LivePreviewProps {
   aspectRatio?: string;
 }
 
-export default function LivePreview({ url, title, className = '', aspectRatio = 'aspect-[16/10]' }: LivePreviewProps) {
+export default function LivePreview({ url, title, className = '', aspectRatio = 'aspect-[16/9]' }: LivePreviewProps) {
   const [iframeKey, setIframeKey] = useState(0);
   const [hasError, setHasError] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Lazy load: only render iframe when visible in viewport
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setIsVisible(true); observer.disconnect(); } },
+      { rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const getDomain = (link?: string) => {
     if (!link) return 'devsiy.com';
@@ -57,9 +71,9 @@ export default function LivePreview({ url, title, className = '', aspectRatio = 
       </div>
 
       {/* Preview Container */}
-      <div className={`relative w-full ${aspectRatio} bg-neutral-950 overflow-hidden`}>
-        {validUrl && !hasError ? (
-          <div className="w-[200%] h-[200%] origin-top-left scale-50 pointer-events-none">
+      <div ref={containerRef} className={`relative w-full ${aspectRatio} bg-neutral-950 overflow-hidden`}>
+        {validUrl && !hasError && isVisible ? (
+          <div className="w-[300%] h-[300%] origin-top-left scale-[0.3334] pointer-events-none">
             <iframe
               key={iframeKey}
               src={validUrl}
@@ -69,6 +83,10 @@ export default function LivePreview({ url, title, className = '', aspectRatio = 
               onError={() => setHasError(true)}
               sandbox="allow-scripts allow-same-origin allow-popups"
             />
+          </div>
+        ) : validUrl && !hasError && !isVisible ? (
+          <div className="w-full h-full flex items-center justify-center bg-neutral-950">
+            <div className="w-6 h-6 border-2 border-white/20 border-t-white rounded-full animate-spin" />
           </div>
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-neutral-900 via-neutral-950 to-neutral-900">

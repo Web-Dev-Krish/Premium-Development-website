@@ -70,7 +70,7 @@ export default function Portfolio() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/30">
-                <Skeleton className="aspect-[16/10] w-full rounded-none" />
+                <Skeleton className="aspect-[16/9] w-full rounded-none" />
                 <div className="p-6 space-y-3">
                   <Skeleton className="h-3 w-20" />
                   <Skeleton className="h-5 w-2/3" />
@@ -82,37 +82,71 @@ export default function Portfolio() {
         ) : (
           <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence>
-              {filtered.map((project) => (
-                <motion.div
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
-                  key={project.id}
-                  className="group relative rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/30 flex flex-col"
-                >
-                  <div className="p-2">
-                    <LivePreview url={project.project_url} title={project.title} aspectRatio="aspect-[16/10]" />
-                  </div>
-                  <div className="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                      <p className="text-xs text-neutral-500 mb-2 tracking-wider">{project.categories?.name || 'Project'}</p>
-                      <h3 className="text-xl text-white font-light mb-2">{project.title}</h3>
-                      <p className="text-neutral-400 text-sm line-clamp-2 mb-4">{project.description}</p>
-                    </div>
-                    {project.project_url && (
-                      <a href={project.project_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-white hover:text-neutral-300 transition-colors mt-auto">
-                        Visit Live <ExternalLink className="w-3 h-3" />
-                      </a>
-                    )}
-                  </div>
-                </motion.div>
+              {filtered.map((project, index) => (
+                <PortfolioCard key={project.id} project={project} index={index} />
               ))}
             </AnimatePresence>
           </motion.div>
         )}
       </div>
     </section>
+  );
+}
+
+/** Individual portfolio card — loads its iframe only when scrolled into view */
+function PortfolioCard({ project, index }: { project: any; index: number }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Stagger: delay each card by 300ms * its position to prevent all loading at once
+          const timer = setTimeout(() => setShouldLoad(true), index * 300);
+          observer.disconnect();
+          return () => clearTimeout(timer);
+        }
+      },
+      { rootMargin: '100px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [index]);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      layout
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.3 }}
+      className="group relative rounded-2xl overflow-hidden border border-white/10 bg-neutral-900/30 flex flex-col"
+    >
+      <div className="p-2">
+        {shouldLoad ? (
+          <LivePreview url={project.project_url} title={project.title} aspectRatio="aspect-[16/9]" />
+        ) : (
+          <div className="aspect-[16/9] rounded-xl bg-neutral-900/80 border border-white/10 flex items-center justify-center">
+            <div className="w-6 h-6 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+          </div>
+        )}
+      </div>
+      <div className="p-6 flex-1 flex flex-col justify-between">
+        <div>
+          <p className="text-xs text-neutral-500 mb-2 tracking-wider">{project.categories?.name || 'Project'}</p>
+          <h3 className="text-xl text-white font-light mb-2">{project.title}</h3>
+          <p className="text-neutral-400 text-sm line-clamp-2 mb-4">{project.description}</p>
+        </div>
+        {project.project_url && (
+          <a href={project.project_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-sm text-white hover:text-neutral-300 transition-colors mt-auto">
+            Visit Live <ExternalLink className="w-3 h-3" />
+          </a>
+        )}
+      </div>
+    </motion.div>
   );
 }

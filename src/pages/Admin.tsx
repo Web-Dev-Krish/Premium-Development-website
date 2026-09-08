@@ -29,7 +29,7 @@ export default function Admin() {
     { to: '/admin/leads', icon: Inbox, label: 'Leads' },
     { to: '/admin/projects', icon: Briefcase, label: 'Projects' },
     { to: '/admin/featured', icon: Star, label: 'Featured' },
-    { to: '/admin/recent-work', icon: Film, label: 'Recent Work' },
+    { to: '/admin/blogs', icon: Film, label: 'Blogs' },
     { to: '/admin/skins', icon: Palette, label: 'Skins' },
     { to: '/admin/hosting', icon: Server, label: 'Hosting' },
     { to: '/admin/founders', icon: Users, label: 'Founders' },
@@ -75,7 +75,7 @@ export default function Admin() {
           <Route path="/leads" element={<LeadsManager />} />
           <Route path="/projects" element={<ProjectsManager />} />
           <Route path="/featured" element={<FeaturedWebsitesManager />} />
-          <Route path="/recent-work" element={<RecentWorkManager />} />
+          <Route path="/blogs" element={<RecentWorkManager />} />
           <Route path="/skins" element={<SkinsManager />} />
           <Route path="/hosting" element={<HostingManager />} />
           <Route path="/founders" element={<FoundersManager />} />

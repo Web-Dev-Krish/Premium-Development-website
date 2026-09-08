@@ -27,7 +27,7 @@ function App() {
                 <Portfolio />
               </Suspense>
             } />
-            <Route path="/recent-work" element={
+            <Route path="/blogs" element={
               <Suspense fallback={<PageSkeleton />}>
                 <RecentWork />
               </Suspense>

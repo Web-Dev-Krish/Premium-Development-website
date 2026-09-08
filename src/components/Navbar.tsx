@@ -26,6 +26,7 @@ export default function Navbar({ settings }: NavbarProps) {
     { label: 'ABOUT US', href: '/#about' },
     { label: 'SERVICES', href: '/#services' },
     { label: 'WORKS', href: '/portfolio' },
+    { label: 'BLOGS', href: '/blogs' },
     { label: 'CONTACT', href: '/contact' },
   ];
 
